@@ -1,0 +1,30 @@
+<div class="center">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" style="text-align:center">ID</th>
+                <th scope="col" style="text-align:center">title</th>
+                <th scope="col" style="text-align:center">description</th>
+                <th scope="col" style="text-align:center">price</th>
+                <th scope="col" style="text-align:center">discountPercentage</th>
+                <th scope="col" style="text-align:center">rating</th>
+                <th scope="col" style="text-align:center">stock</th>
+                <th scope="col" style="text-align:center">brand</th>
+                <th scope="col" style="text-align:center">category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list">
+                <th scope="col" style="text-align:center">{{item.id}}</th>
+                <td>{{item.title}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.discountPercentage}}</td>
+                <td>{{item.rating}}</td>
+                <td>{{item.stock}}</td>
+                <td>{{item.brand}}</td>
+                <td>{{item.category}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

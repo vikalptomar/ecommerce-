@@ -1,0 +1,23 @@
+<div class="login-form">
+    <h2>Login</h2>
+    <form [formGroup]="loginform" (ngSubmit)="login()">
+        <div>
+            <div class="form-group">
+                <input type="text" formControlName="email" placeholder="Email Id">
+            </div>
+            <div class="form-group">
+                <input type="password" formControlName="password" placeholder="Password">
+            </div>
+            <div class="form-actions">
+                <button type="submit">Submit</button>
+            </div>
+            <div>
+                <p style="color: red;">{{message}}</p>
+            </div>
+            <div>
+                <p>Not a user?</p>
+                <p><a routerLink="/signup">Sign-up</a></p>
+            </div>
+        </div>
+    </form>
+</div>

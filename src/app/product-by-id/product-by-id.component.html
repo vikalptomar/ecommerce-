@@ -1,0 +1,30 @@
+<div class="center">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" style="text-align:center">ID</th>
+                <th scope="col" style="text-align:center">title</th>
+                <th scope="col" style="text-align:center">description</th>
+                <th scope="col" style="text-align:center">price</th>
+                <th scope="col" style="text-align:center">discountPercentage</th>
+                <th scope="col" style="text-align:center">rating</th>
+                <th scope="col" style="text-align:center">stock</th>
+                <th scope="col" style="text-align:center">brand</th>
+                <th scope="col" style="text-align:center">category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list">
+                <td *ngIf="item.id===x.id">{{x.id}}</td>
+                <td *ngIf="item.id===x.id">{{x.title}}</td>
+                <td *ngIf="item.id===x.id">{{x.description}}</td>
+                <td *ngIf="item.id===x.id">{{x.price}}</td>
+                <td *ngIf="item.id===x.id">{{x.discountPercentage}}</td>
+                <td *ngIf="item.id===x.id">{{x.rating}}</td>
+                <td *ngIf="item.id===x.id">{{x.stock}}</td>
+                <td *ngIf="item.id===x.id">{{x.brand}}</td>
+                <td *ngIf="item.id===x.id">{{x.category}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
