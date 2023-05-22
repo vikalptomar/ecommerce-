@@ -7,7 +7,7 @@ import { signUp } from './data-type';
 })
 export class AdminService {
 
-  url="http://localhost:3000/users"
+  url="https://dummyjson.com/users"
   constructor(private http:HttpClient) { }
   
   userLogin(){
@@ -15,5 +15,8 @@ export class AdminService {
   }
   userSignUp(data:signUp){
     return this.http.post(this.url,data);
+  }
+  getAllUsers(){
+    return this.http.get(this.url);
   }
 }

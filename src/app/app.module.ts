@@ -11,6 +11,8 @@ import { AllProductComponent } from './all-product/all-product.component';
 import { ProductsByIdComponent } from './product-by-id/product-by-id.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignupComponent } from './signup/signup.component';
+import { AllUserComponent } from './all-user/all-user.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { SignupComponent } from './signup/signup.component';
     AllProductComponent,
     ProductsByIdComponent,
     PageNotFoundComponent,
-    SignupComponent
+    SignupComponent,
+    AllUserComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

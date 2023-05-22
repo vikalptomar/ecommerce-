@@ -4,8 +4,10 @@ import {HttpClient} from '@angular/common/http'
   providedIn: 'root'
 })
 export class ProductService {
-  url="https://dummyjson.com/products"
+  url="https://dummyjson.com/products";
   constructor(private http:HttpClient ) {}
+  
+  list:any=[];
   getProducts(){
     return this.http.get(this.url)
   }

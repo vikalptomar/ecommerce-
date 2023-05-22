@@ -6,15 +6,15 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate{
+export class AuthGuard2 implements CanActivate{
   constructor(private users:AdminService, private router:Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
       
-    if (!localStorage.getItem('sessionToken')) {
+    if (localStorage.getItem('sessionToken')) {
       // Session exists, perform automatic login or redirect to protected route
-       this.router.navigate(['']);
+       this.router.navigate(['products']);
        return true;
     } 
     

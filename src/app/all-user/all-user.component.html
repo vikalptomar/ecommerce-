@@ -1,0 +1,33 @@
+<div class="center">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" style="text-align:center">ID</th>
+                <th scope="col" style="text-align:center">firstName</th>
+                <th scope="col" style="text-align:center">lastName</th>
+                <th scope="col" style="text-align:center">maidenName</th>
+                <th scope="col" style="text-align:center">age</th>
+                <th scope="col" style="text-align:center">gender</th>
+                <th scope="col" style="text-align:center">username</th>
+                <th scope="col" style="text-align:center">email</th>
+                <th scope="col" style="text-align:center">password</th>
+                <th scope="col" style="text-align:center">phone</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list">
+                <th scope="col" style="text-align:center">{{item.id}}</th>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.maidenName}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.gender}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.password}}</td>
+                <td>{{item.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

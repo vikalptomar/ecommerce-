@@ -16,31 +16,35 @@ export class LoginComponent {
   })
 
   message = "";
+
   login() {
+    this.users.userLogin().subscribe((res: any) => {
+      let data = res.users;
+      let filter = data.filter((val: any) => {
+        if ((val.email === this.loginform.value.email) && (val.password === this.loginform.value.password)) {
 
-    
-    this.users.userLogin().subscribe((data: any) => {
-     debugger;
-      let user = data.filter((val:any)=> val.email === this.loginform.value.email);
-      debugger;
-      
-     
+          const token = val;
 
-      // let i;
-      // let length=data.length;  
+          localStorage.setItem('sessionToken', JSON.stringify(token));
+          console.log(token);
 
-      // for (i = 0; i < length; i++) {
-      //   debugger;
-      //   if (data[i].email === this.loginform.value.email && data[i].password === this.loginform.value.password) {
-         
-         
-      //     this.router.navigate(['products'])
-      //   }
-      //   else {
-      //     this.message = "Invalid email id or password"
-      //   }
-      // }
+          this.router.navigate(['products']);
+        }
+        else {
+          this.message = "Invalid email id or password";
+        }
+      });
     })
+    // let length = data.length;
+    // let i;
+    // for (i = 0; i < length; i++) {
+    //   if (data[i].email === this.loginform.value.email && data[i].password === this.loginform.value.password) {
+    //     this.router.navigate(['products'])
+    //   }
+    //   else {
+    //     this.message = "Invalid email id or password"
+    //   }
+    // }
+  }
 
-}
 }

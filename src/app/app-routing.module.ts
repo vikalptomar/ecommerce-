@@ -6,9 +6,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './auth.guard';
+import { AuthGuard2 } from './auth2.guard';
+import { AllUserComponent } from './all-user/all-user.component';
 
 const routes: Routes = [
-  {path:"",component:LoginComponent},
+  {path:"",component:LoginComponent, canActivate:[AuthGuard2]},
+  {path:"users",component:AllUserComponent},
   {path:"signup",component:SignupComponent},
   {path:"products",component:AllProductComponent, canActivate:[AuthGuard]},
   {path:"products/:id",component:ProductsByIdComponent},

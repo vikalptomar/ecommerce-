@@ -12,8 +12,8 @@ export class ProductsByIdComponent {
   list:any=[];
   x:any;
   ngOnInit(): void{
-    this.product_instance.getProducts().subscribe((data)=>{
-      this.list=data;
+    this.product_instance.getProducts().subscribe((data: any)=>{
+      this.list=data.products;
     })
   }
   data=this.product_instance.getProductsById(this.route.snapshot.params['id']).subscribe((res)=>{
