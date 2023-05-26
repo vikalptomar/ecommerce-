@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +14,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SignupComponent } from './signup/signup.component';
 import { AllUserComponent } from './all-user/all-user.component';
 import { HeaderComponent } from './header/header.component';
-
-
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProductCategoryComponent } from './product-category/product-category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +25,15 @@ import { HeaderComponent } from './header/header.component';
     PageNotFoundComponent,
     SignupComponent,
     AllUserComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfilePageComponent,
+    ProductCategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     FormsModule,
     HttpClientModule
   ],

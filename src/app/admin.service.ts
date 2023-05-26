@@ -19,4 +19,8 @@ export class AdminService {
   getAllUsers(){
     return this.http.get(this.url);
   }
+  getUserById(id:number){
+   return this.http.get(`${this.url}/${id}`)
+  } 
+  
 }

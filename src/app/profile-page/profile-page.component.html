@@ -1,0 +1,33 @@
+<app-header></app-header>
+<br>
+<br>
+<br>
+<div class="position-absolute top-50 start-50 translate-middle py-5 ">
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col card text-center">
+                <img src="{{list.image}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col">
+                <div class="card-body text-center">
+                    <h5 class="card-title">First Name = {{list.firstName}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Last Name = {{list.lastName}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Miden Name={{list.maidenName}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Age = {{list.age}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">BloodGroup= {{list.bloodGroup}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">eyeColor = {{list.eyeColor}}/5</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Gender ={{list.gender}}</h5>
+                </div>
+            </div>
+            <div class="card-body card text-center">
+                <p class="card-text">Address ={{list.address.address}}.</p>
+            </div>
+        </div>
+    </div>
+</div>

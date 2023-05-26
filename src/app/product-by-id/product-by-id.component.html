@@ -1,30 +1,37 @@
-<div class="center">
-    <table>
-        <thead>
-            <tr>
-                <th scope="col" style="text-align:center">ID</th>
-                <th scope="col" style="text-align:center">title</th>
-                <th scope="col" style="text-align:center">description</th>
-                <th scope="col" style="text-align:center">price</th>
-                <th scope="col" style="text-align:center">discountPercentage</th>
-                <th scope="col" style="text-align:center">rating</th>
-                <th scope="col" style="text-align:center">stock</th>
-                <th scope="col" style="text-align:center">brand</th>
-                <th scope="col" style="text-align:center">category</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of list">
-                <td *ngIf="item.id===x.id">{{x.id}}</td>
-                <td *ngIf="item.id===x.id">{{x.title}}</td>
-                <td *ngIf="item.id===x.id">{{x.description}}</td>
-                <td *ngIf="item.id===x.id">{{x.price}}</td>
-                <td *ngIf="item.id===x.id">{{x.discountPercentage}}</td>
-                <td *ngIf="item.id===x.id">{{x.rating}}</td>
-                <td *ngIf="item.id===x.id">{{x.stock}}</td>
-                <td *ngIf="item.id===x.id">{{x.brand}}</td>
-                <td *ngIf="item.id===x.id">{{x.category}}</td>
-            </tr>
-        </tbody>
-    </table>
+<app-header></app-header>
+<!-- <br>
+<br>
+<br> -->
+<div class="position-absolute top-50 start-50 translate-middle py-5">
+    <div class="card mb-3 ">
+        <div class="row g-0">
+            <div class="col card text-center">
+                <img src="{{x.thumbnail}}" class="img-fluid rounded-start" style="max-height: 400px;max-width: 500px;" alt="...">
+            </div>
+            <div class="col">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{x.title}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Price=${{x.price}}</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Rating={{x.rating}}/5</h5>
+                    <hr class="featurette-divider">
+                    <h5 class="card-price">Discount Percentage={{x.discountPercentage}}%</h5>
+                    <hr class="featurette-divider">
+                    <a href=""><button class="btn btn-dark text-center">Buy Now</button></a>
+                </div>
+            </div>
+            <div class="card-body card text-center">
+                <h5 class="card-price">Brand={{x.brand}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Category={{x.category}}</h5>
+
+                <hr class="featurette-divider">
+                <h5 class="card-price">Stock={{x.stock}}</h5>
+                <hr class="featurette-divider">
+                <p class="card-text">Description={{x.description}}.</p>
+            </div>
+
+        </div>
+    </div>
 </div>

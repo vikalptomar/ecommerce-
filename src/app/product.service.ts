@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http'
 export class ProductService {
   url="https://dummyjson.com/products";
   constructor(private http:HttpClient ) {}
-  
+ 
   list:any=[];
   getProducts(){
     return this.http.get(this.url)
@@ -14,4 +14,7 @@ export class ProductService {
   getProductsById(id:number){
     return this.http.get(`${this.url}/${id}`)
   }
+  getProductByCategory(category:string){
+    return this.http.get(`${this.url}`)
+   }
 }

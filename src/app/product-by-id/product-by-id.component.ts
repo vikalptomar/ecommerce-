@@ -16,6 +16,7 @@ export class ProductsByIdComponent {
       this.list=data.products;
     })
   }
+
   data=this.product_instance.getProductsById(this.route.snapshot.params['id']).subscribe((res)=>{
     console.log(res);
     this.x=res;
