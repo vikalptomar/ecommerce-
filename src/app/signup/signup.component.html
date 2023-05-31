@@ -1,13 +1,46 @@
-<div class="sign-up">
-    <h1>Registration</h1>
-    <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)" class="common-form">
-        <input type="text" ngModel class="form-input" placeholder="Enter UserName" name="userName" >
-        <input type="password" ngModel class="form-input" placeholder="Enter Password" name="password" >
-        <input type="email" ngModel class="form-input" placeholder="Enter Email" name="email" >
-        <button class="form-button">Sign Up</button>
+<!-- <div class="login-form">
+    <h2>Login</h2>
+    <form [formGroup]="loginform" (ngSubmit)="login()">
+        <div>
+            <div class="form-group">
+                <input type="text" formControlName="email" placeholder="Email Id">
+            </div>
+            <div class="form-group">
+                <input type="password" formControlName="password" placeholder="Password">
+            </div>
+            <div class="form-actions">
+                <button type="submit">Submit</button>
+            </div>
+            <div>
+                <p style="color: red;">{{message}}</p>
+            </div>
+            <div>
+                <p>Not a user?</p>
+                <p><a routerLink="/signup">Sign-up</a></p>
+            </div>
+        </div>
     </form>
-    <div class="common-form">
-        <p>Existing user?</p>
-        <p><a routerLink="/">Login</a></p>
-    </div>
+</div> -->
+<div class="login-form">
+    <h2>Registration</h2>
+    <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
+        <div>
+            <div class="form-group">
+                <input type="text" ngModel placeholder="Enter UserName" name="userName">
+            </div>
+            <div class="form-group">
+                <input type="password" ngModel placeholder="Enter Password" name="password">
+            </div>
+            <div class="form-group">
+                <input type="text" ngModel placeholder="Enter Email" name="email">
+            </div>
+            <div class="form-actions">
+                <button type="submit">Sign Up</button>
+            </div>
+            <div>
+                <p>Existing user?</p>
+                <p><a routerLink="/">Login</a></p>
+            </div>
+        </div>
+    </form>
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { ActivatedRoute } from '@angular/router';
+import { faHome } from '@fortawesome/free-solid-svg-icons'; 
 
 @Component({
   selector: 'app-profile-page',
@@ -11,7 +12,7 @@ export class ProfilePageComponent {
 
   constructor(private userDetail: AdminService, private route: ActivatedRoute) { }
   list: any = {};
-
+  homeicon=faHome;
   ngOnInit(): void {
     console.log("hi");
     // console.log(localStorage.getItem('sessionToken'));

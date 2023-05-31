@@ -14,7 +14,7 @@ export class ProductService {
   getProductsById(id:number){
     return this.http.get(`${this.url}/${id}`)
   }
-  getProductByCategory(category:string){
-    return this.http.get(`${this.url}`)
-   }
+  getCartData(id:number){
+    return this.http.get(`${this.url}/${id}`)
+  }
 }

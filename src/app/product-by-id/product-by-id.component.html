@@ -1,8 +1,11 @@
-<app-header></app-header>
-<!-- <br>
-<br>
-<br> -->
-<div class="position-absolute top-50 start-50 translate-middle py-5">
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="nav-link active" aria-current="page" routerLink="/products">
+            <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
+    </div>
+</nav>
+
+<div class="py-5">
     <div class="card mb-3 ">
         <div class="row g-0">
             <div class="col card text-center">
@@ -18,20 +21,18 @@
                     <hr class="featurette-divider">
                     <h5 class="card-price">Discount Percentage={{x.discountPercentage}}%</h5>
                     <hr class="featurette-divider">
-                    <a href=""><button class="btn btn-dark text-center">Buy Now</button></a>
+                    <a routerLink="/cart"><button class="btn btn-outline-success text-center">Add Cart +</button></a>
                 </div>
             </div>
             <div class="card-body card text-center">
                 <h5 class="card-price">Brand={{x.brand}}</h5>
                 <hr class="featurette-divider">
                 <h5 class="card-price">Category={{x.category}}</h5>
-
                 <hr class="featurette-divider">
                 <h5 class="card-price">Stock={{x.stock}}</h5>
                 <hr class="featurette-divider">
                 <p class="card-text">Description={{x.description}}.</p>
             </div>
-
         </div>
     </div>
 </div>

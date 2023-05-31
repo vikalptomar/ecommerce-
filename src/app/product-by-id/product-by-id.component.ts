@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import {ProductService} from '../product.service';
 import {ActivatedRoute} from '@angular/router';
-
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-product-by-id',
   templateUrl: './product-by-id.component.html',
@@ -11,6 +11,7 @@ export class ProductsByIdComponent {
   constructor(private product_instance:ProductService, private route:ActivatedRoute){  }
   list:any=[];
   x:any;
+  homeicon=faHome;
   ngOnInit(): void{
     this.product_instance.getProducts().subscribe((data: any)=>{
       this.list=data.products;

@@ -1,14 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ProductService } from '../product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-all-product',
   templateUrl: './all-product.component.html',
   styleUrls: ['./all-product.component.scss']
 })
 export class AllProductComponent {
-  constructor(private product_instance: ProductService) { }
+  constructor(private product_instance: ProductService, private elementRef: ElementRef,private route: ActivatedRoute, private router: Router) { }
   list: any = [];
+  filter='';
   categoryList: any =[];
+  parFunction(data: any){
+    console.log(data);  
+    this.filter=data; 
+  }
+  ngAfterViewInit() {
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        const element = this.elementRef.nativeElement.querySelector(`#${fragment}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
   ngOnInit(): void {
     this.product_instance.getProducts().subscribe((data: any) => {
       this.list = data.products;

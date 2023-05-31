@@ -10,15 +10,19 @@ import { AuthGuard2 } from './auth2.guard';
 import { AllUserComponent } from './all-user/all-user.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { CartComponent } from './cart/cart.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent, canActivate:[AuthGuard2]},
   {path:"users",component:AllUserComponent},
+  {path:"header",component:HeaderComponent},
   {path:"signup",component:SignupComponent},
   {path:"products",component:AllProductComponent, canActivate:[AuthGuard]},
   {path:"profile-page",component:ProfilePageComponent, canActivate:[AuthGuard]},
   {path:"products/:id",component:ProductsByIdComponent, canActivate:[AuthGuard]},
   {path:"product/:category",component:ProductCategoryComponent, canActivate:[AuthGuard]},
+  {path:"cart",component:CartComponent, canActivate:[AuthGuard]},
   {path:"**",component:PageNotFoundComponent}
 ];
 

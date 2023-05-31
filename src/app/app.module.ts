@@ -16,6 +16,9 @@ import { AllUserComponent } from './all-user/all-user.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import { SearchPipe } from './search.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,10 @@ import { ProductCategoryComponent } from './product-category/product-category.co
     AllUserComponent,
     HeaderComponent,
     ProfilePageComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    FooterComponent,
+    CartComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

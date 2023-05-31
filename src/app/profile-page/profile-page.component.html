@@ -1,9 +1,13 @@
-<app-header></app-header>
-<br>
-<br>
-<br>
-<div class="position-absolute top-50 start-50 translate-middle py-5 ">
-    <div class="card mb-3">
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="nav-link active" aria-current="page" routerLink="/products">
+            <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
+    </div>
+</nav>
+<section class="container px-4 py-5 ">
+</section>
+<div class="position-absolute top-50 start-50 translate-middle py-5">
+    <div class="card mb-3" style="width: 20rem; height: 20rem;">
         <div class="row g-0">
             <div class="col card text-center">
                 <img src="{{list.image}}" class="img-fluid rounded-start" alt="...">

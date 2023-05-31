@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
     this.users.userSignUp(data).subscribe((res: any) => {
       console.log(res);
       if(res){
-        this.router.navigate(['products'])
+        this.router.navigate(['products']);
       }
     })
   }

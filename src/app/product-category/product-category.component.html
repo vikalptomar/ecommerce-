@@ -1,7 +1,50 @@
-<app-header></app-header>
-<br>
-<br>
-<br>
-<div *ngFor="let item of list">
-    <h1>{{item.id}}={{item.title}}</h1>
-</div>
+<!-- <section class="container px-4 py-5" id={{item}}>
+    <h2 class="pb-2">{{item | uppercase}}</h2>
+    <div class="card-group">
+        <div *ngFor="let itemList of list">
+            <div class="row">
+                <ng-container *ngIf="item === itemList.category" class="col">
+                    <a routerLink="/products/{{itemList.id}} " style=" text-decoration:none;">
+                        <div class="card p-2 bd-light border" style="width: 16rem; height: 19rem;">
+                            <img src="{{itemList.thumbnail}}" class="card-img-top" alt="..."
+                                style="width: 12rem; height: 12rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{itemList.title | uppercase}}
+                                </h5>
+                            </div>
+                        </div>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="nav-link active" aria-current="page" routerLink="/products">
+            <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
+        <form class="d-flex">
+            <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search" name="search"
+                [(ngModel)]="filter" style="color:black;font-size: 1.5rem;">
+        </form>
+    </div>
+</nav>
+<section class="container px-4 py-5 " style="background-color: rgb(215, 247, 247);">
+    <h1 class="mx-3">{{cat | uppercase}}</h1>
+    <hr class="featurette-divider">
+    <div class="card-group">
+        <div *ngFor="let item of list | search:filter:['title']">
+            <a routerLink="/products/{{item.id}} " style=" text-decoration:none;">
+                <div class="card p-2 bd-light border mx-3 mt-4" style="width: 16rem; height: 19rem;">
+                    <img src="{{item.thumbnail}}" class="card-img-top" alt="..." style="width: 12rem; height: 12rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.title | uppercase}}
+                        </h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

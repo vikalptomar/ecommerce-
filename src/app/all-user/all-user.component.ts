@@ -9,10 +9,15 @@ export class AllUserComponent {
   constructor(private allusers: AdminService) { }
 
   list:any=[];
+  filter='';
   ngOnInit(): void{
     this.allusers.getAllUsers().subscribe((data: any) => {
       console.log(data.users);
       this.list=data.users;
     })
+  }
+  parFunction(data:any){
+    console.log(data);
+    this.filter=data;
   }
 }
