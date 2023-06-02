@@ -8,16 +8,22 @@ import { AdminService } from '../admin.service';
 export class AllUserComponent {
   constructor(private allusers: AdminService) { }
 
-  list:any=[];
-  filter='';
-  ngOnInit(): void{
+  list: any = [];
+  filter = '';
+  ngOnInit(): void {
     this.allusers.getAllUsers().subscribe((data: any) => {
-      console.log(data.users);
-      this.list=data.users;
+      this.list = data.users;
+      console.log(this.list);
     })
   }
-  parFunction(data:any){
-    console.log(data);
-    this.filter=data;
+  parFunction(data: any) {
+    // console.log(data);
+    this.filter = data;
+    return this.filter;
   }
 }
+
+// const searchFilter = this.list.filter((res: { firstName: string; }) =>
+//   res.firstName.toLowerCase().includes(this.filter.toLowerCase())
+// )
+// console.log("data="+searchFilter);

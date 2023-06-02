@@ -29,7 +29,7 @@
     </tbody>
   </table>
 </div> -->
-
+<!-- color: #efefef -->
 <main>
 
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -88,9 +88,9 @@
   </div>
 
   <div *ngFor="let item of categoryList">
-    <section class="container" id={{item}}>
-      <h1 class="pb-5 pt-5 text-center fs-1 fw-bold">{{item | uppercase}}</h1>
-      <div class="card-group" style="border-radius: 1rem;background-color: rgb(215, 247, 247);">
+    <section class="container-fluid px-5 py-5" id={{item}}>
+      <h1 class=" pb-5 pt-5 text-center fs-1 fw-bold bg-dark" style="border-radius: 1rem;color:white">{{item | uppercase}}</h1>
+      <div class="card-group bg-dark" style="border-radius: 1rem;">
         <div *ngFor="let itemList of list | search:filter:['title','category']">
           <div class="row" style="border-radius: 1rem;">
             <ng-container *ngIf="item === itemList.category" class="col">

@@ -12,6 +12,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent, canActivate:[AuthGuard2]},
@@ -21,8 +22,9 @@ const routes: Routes = [
   {path:"products",component:AllProductComponent, canActivate:[AuthGuard]},
   {path:"profile-page",component:ProfilePageComponent, canActivate:[AuthGuard]},
   {path:"products/:id",component:ProductsByIdComponent, canActivate:[AuthGuard]},
+  {path:"cart/:id",component:CartComponent, canActivate:[AuthGuard]},
+  {path:"checkout",component:CheckoutComponent, canActivate:[AuthGuard]},
   {path:"product/:category",component:ProductCategoryComponent, canActivate:[AuthGuard]},
-  {path:"cart",component:CartComponent, canActivate:[AuthGuard]},
   {path:"**",component:PageNotFoundComponent}
 ];
 

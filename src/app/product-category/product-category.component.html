@@ -30,12 +30,12 @@
         </form>
     </div>
 </nav>
-<section class="container px-4 py-5 " style="background-color: rgb(215, 247, 247);">
-    <h1 class="mx-3">{{cat | uppercase}}</h1>
+<section class="container px-4 py-5 ">
+    <h1 class="mx-3 text-center">{{cat | uppercase}}</h1>
     <hr class="featurette-divider">
-    <div class="card-group">
+    <div class="card-group" style="border-radius: 1rem; background-color:#efefef;">
         <div *ngFor="let item of list | search:filter:['title']">
-            <a routerLink="/products/{{item.id}} " style=" text-decoration:none;">
+            <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
                 <div class="card p-2 bd-light border mx-3 mt-4" style="width: 16rem; height: 19rem;">
                     <img src="{{item.thumbnail}}" class="card-img-top" alt="..." style="width: 12rem; height: 12rem;">
                     <div class="card-body">

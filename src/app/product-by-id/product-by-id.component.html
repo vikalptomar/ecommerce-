@@ -4,35 +4,68 @@
             <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
     </div>
 </nav>
-
-<div class="py-5">
-    <div class="card mb-3 ">
-        <div class="row g-0">
-            <div class="col card text-center">
-                <img src="{{x.thumbnail}}" class="img-fluid rounded-start" style="max-height: 400px;max-width: 500px;" alt="...">
+<section class="container text-center pt-3">
+    <div class="card-group" style="border-radius: 1rem;background-color:#efefef;">
+        <div class="card mx-3 my-3">
+            <div class="text-center pt-3 pb-3">
+                <img src="{{data.thumbnail}}" class="card-img-top"
+                    style="border-radius: 1rem;width: 20rem;height: 20rem;" alt="...">
             </div>
-            <div class="col">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{x.title}}</h5>
-                    <hr class="featurette-divider">
-                    <h5 class="card-price">Price=${{x.price}}</h5>
-                    <hr class="featurette-divider">
-                    <h5 class="card-price">Rating={{x.rating}}/5</h5>
-                    <hr class="featurette-divider">
-                    <h5 class="card-price">Discount Percentage={{x.discountPercentage}}%</h5>
-                    <hr class="featurette-divider">
-                    <a routerLink="/cart"><button class="btn btn-outline-success text-center">Add Cart +</button></a>
+            <div class="text-end px-3 py-3">
+                <!-- <a routerLink="/cart"><button class="btn btn-outline-success">Add Cart +</button></a> -->
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Add Cart +
+                </button>
+            </div>
+        </div>
+        <div class="card mx-3 my-3">
+            <div class="card-body">
+                <h5 class="card-title">{{data.title}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Price=${{data.price}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Rating={{data.rating}}/5</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Discount Percentage={{data.discountPercentage}}%</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Brand={{data.brand}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Category={{data.category}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Stock={{data.stock}}</h5>
+                <hr class="featurette-divider">
+                <p class="card-text">Description={{data.description}}.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">{{data.title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="pt-3">
+                    <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2.5rem" (click)="handelQuantity('min')">-</button>
+                    <input class="text-center pb-1" style="width: 2.5rem;border: 0.5rem;" type="number" value="{{productQuantity}}">
+                    <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 0.9rem;width: 2.5rem" (click)="handelQuantity('plus')">+</button>
                 </div>
             </div>
-            <div class="card-body card text-center">
-                <h5 class="card-price">Brand={{x.brand}}</h5>
-                <hr class="featurette-divider">
-                <h5 class="card-price">Category={{x.category}}</h5>
-                <hr class="featurette-divider">
-                <h5 class="card-price">Stock={{x.stock}}</h5>
-                <hr class="featurette-divider">
-                <p class="card-text">Description={{x.description}}.</p>
+            <div class="modal-body text-center">
+                <h5 class="">
+                    Total : ${{data.price*productQuantity}}
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" routerLink="/checkout" class="btn btn-primary" >CheckOut</button>
             </div>
         </div>
     </div>
 </div>
+<!-- routerLink="/cart/{{data.id}}" -->

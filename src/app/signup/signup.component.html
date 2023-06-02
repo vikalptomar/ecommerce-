@@ -21,26 +21,28 @@
         </div>
     </form>
 </div> -->
-<div class="login-form">
-    <h2>Registration</h2>
-    <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
-        <div>
-            <div class="form-group">
-                <input type="text" ngModel placeholder="Enter UserName" name="userName">
-            </div>
-            <div class="form-group">
-                <input type="password" ngModel placeholder="Enter Password" name="password">
-            </div>
-            <div class="form-group">
-                <input type="text" ngModel placeholder="Enter Email" name="email">
-            </div>
-            <div class="form-actions">
-                <button type="submit">Sign Up</button>
-            </div>
+<div class="container text-center pt-5" style="border-radius: 1rem;background-color: #efefef;height: 100vh;">
+    <div class="login-form">
+        <h2>Registration</h2>
+        <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
             <div>
-                <p>Existing user?</p>
-                <p><a routerLink="/">Login</a></p>
+                <div class="form-group">
+                    <input type="text" ngModel placeholder="Enter UserName" name="userName">
+                </div>
+                <div class="form-group">
+                    <input type="password" ngModel placeholder="Enter Password" name="password">
+                </div>
+                <div class="form-group">
+                    <input type="text" ngModel placeholder="Enter Email" name="email">
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Sign Up</button>
+                </div>
+                <div class="pt-4">
+                    <p>Existing user?</p>
+                    <p><a routerLink="/">Login</a></p>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

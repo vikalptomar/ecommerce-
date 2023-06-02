@@ -4,7 +4,7 @@
             <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
     </div>
 </nav>
-<section class="container px-4 py-5 ">
+<!-- <section class="container px-4 py-5 ">
 </section>
 <div class="position-absolute top-50 start-50 translate-middle py-5">
     <div class="card mb-3" style="width: 20rem; height: 20rem;">
@@ -34,4 +34,30 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<section class="container text-center pt-3">
+    <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">
+        <div class="card mx-3 my-3">
+            <div class="text-center pt-3 pb-3">
+                <img src="{{list.image}}" class="img-fluid rounded-start" alt="...">
+            </div>
+        </div>
+        <div class="card mx-3 my-3">
+            <div class="card-body">
+                <h5 class="card-title">First Name = {{list.firstName}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Last Name = {{list.lastName}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Miden Name={{list.maidenName}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Age = {{list.age}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">BloodGroup= {{list.bloodGroup}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">eyeColor = {{list.eyeColor}}/5</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Gender ={{list.gender}}</h5>
+            </div>
+        </div>
+    </div>
+</section>

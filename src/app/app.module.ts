@@ -19,6 +19,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
 import { SearchPipe } from './search.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { SearchPipe } from './search.pipe';
     ProductCategoryComponent,
     FooterComponent,
     CartComponent,
-    SearchPipe
+    SearchPipe,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
