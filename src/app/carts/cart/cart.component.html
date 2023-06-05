@@ -1,0 +1,12 @@
+ <!-- <button (click)="cart()">create</button>
+<button (click)="addToCart()">Add</button>
+<button (click)="remove()">Remove</button> -->
+<button (click)="checkcart()">Check Remove</button>
+
+<div *ngFor="let item of cartItems; let i = index">
+  Display item information
+  <h3>id={{ item.id }}</h3>
+  <h3>title={{ item.title }}</h3>
+  <h3>price={{ item.price }}</h3>
+  <button (click)="removeFromCart(i)">Remove item</button>
+</div> 

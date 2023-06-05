@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-all-product',

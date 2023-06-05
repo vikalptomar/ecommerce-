@@ -1,6 +1,6 @@
 import { Component ,Output,EventEmitter, OnInit} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ProductService } from '../product.service';
+import { ProductService } from '../../services/product.service';
 import { faUser, faHome, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup } from '@angular/forms';
 

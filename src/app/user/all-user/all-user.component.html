@@ -1,0 +1,83 @@
+<!-- <div class="form-group">
+    <label for="search-text">Search Text</label>
+    <input type="text" class="form-control" id="search-text" aria-describedby="search-text" 
+      [(ngModel)]="filter" placeholder="Enter text to search" 
+      autofocus>
+</div> -->
+<!-- <app-header (parentfunc)="parFunction($event)"></app-header> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- modal -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filter">
+            </div>
+            <div class="modal-body text-center">
+                <div class="pt-3">
+                    <tr class="px-5" *ngFor="let item of list | search:filter:['id','firstName','lastName','maidenName','age','gender','username','email','password','phone']">
+                        <th scope="row" style="text-align:center">{{item.id}}</th>
+                        <td style="text-align:center">{{item.firstName}}</td>
+                        <td style="text-align:center">{{item.lastName}}</td>
+                        <td style="text-align:center">{{item.maidenName}}</td>
+                        <td style="text-align:center">{{item.age}}</td>
+                        <td style="text-align:center">{{item.gender}}</td>
+                        <td style="text-align:center">{{item.username}}</td>
+                        <td style="text-align:center">{{item.email}}</td>
+                        <td style="text-align:center">{{item.password}}</td>
+                        <td style="text-align:center">{{item.phone}}</td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="center pt-5 mt-5">
+    <table class="table">
+        <thead>
+            <tr class="px-5">
+                <th scope="col" style="text-align:center">ID</th>
+                <th  scope="col" style="text-align:center">firstName</th>
+                <th scope="col" style="text-align:center">lastName</th>
+                <th scope="col" style="text-align:center">maidenName</th>
+                <th scope="col" style="text-align:center">age</th>
+                <th scope="col" style="text-align:center">gender</th>
+                <th scope="col" style="text-align:center">username</th>
+                <th scope="col" style="text-align:center">email</th>
+                <th scope="col" style="text-align:center">password</th>
+                <th scope="col" style="text-align:center">phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="px-5" *ngFor="let item of list | search:filter:['id','firstName','lastName','maidenName','age','gender','username','email','password','phone']">
+                <th scope="row" style="text-align:center">{{item.id}}</th>
+                <td style="text-align:center">{{item.firstName}}</td>
+                <td style="text-align:center">{{item.lastName}}</td>
+                <td style="text-align:center">{{item.maidenName}}</td>
+                <td style="text-align:center">{{item.age}}</td>
+                <td style="text-align:center">{{item.gender}}</td>
+                <td style="text-align:center">{{item.username}}</td>
+                <td style="text-align:center">{{item.email}}</td>
+                <td style="text-align:center">{{item.password}}</td>
+                <td style="text-align:center">{{item.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -10,7 +10,8 @@
       <div class="navbar-nav me-auto mb-2 mb-md-0">
         <form class="d-flex justify-content-between">
           <input [(ngModel)]="filter" (keyup)="test($event)" class="form-control me-2" type="search"
-            placeholder="Search Product" aria-label="Search" name="search">
+            placeholder="Search Product" aria-label="Search" name="search" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
         </form>
       </div>
       <ul class="navbar-nav p-2 bd-highlight mb-2 mb-md-0">
@@ -71,6 +72,36 @@
     </div>
   </div>
 </nav>
+
+
+<!-- modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filter">
+      </div>
+      <div class="modal-body">
+        <div class="pt-3 row">
+          <tr class="px-5 d-flex" *ngFor="let item of list | search:filter:['title','category']">
+            <!-- <div *ngIf="(keyup)==1"> -->
+              <a routerLink="/products/{{item.id}}" class="text-start col mx-4"
+                style="text-decoration: none;color: black;">
+                <th scope="row">{{item.title}}</th>
+              </a>
+              <a routerLink="/products/{{item.id}}" class="text-end col" style="text-decoration: none;color: black;">
+                <td>{{item.category}}</td>
+              </a>
+            <!-- </div> -->
+          </tr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- <ul class="list-group list-group-flush">
   <li class="list-group-item" *ngFor="let item of list | search: filter:['title']">
     <p>{{item.title}}</p>

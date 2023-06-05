@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../admin.service';
+import { AdminService } from '../../services/admin.service';
 import {Router} from '@angular/router';
-import { signUp } from '../data-type';
+import { signUp } from '../../data-type';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

@@ -8,34 +8,34 @@
     <div class="card-group" style="border-radius: 1rem;background-color:#efefef;">
         <div class="card mx-3 my-3">
             <div class="text-center pt-3 pb-3">
-                <img src="{{data.thumbnail}}" class="card-img-top"
+                <img src="{{productData.thumbnail}}" class="card-img-top"
                     style="border-radius: 1rem;width: 20rem;height: 20rem;" alt="...">
             </div>
             <div class="text-end px-3 py-3">
                 <!-- <a routerLink="/cart"><button class="btn btn-outline-success">Add Cart +</button></a> -->
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                    data-bs-target="#exampleModal" (click)="addCart()">
                     Add Cart +
                 </button>
             </div>
         </div>
         <div class="card mx-3 my-3">
             <div class="card-body">
-                <h5 class="card-title">{{data.title}}</h5>
+                <h5 class="card-title">{{productData.title}}</h5>
                 <hr class="featurette-divider">
-                <h5 class="card-price">Price=${{data.price}}</h5>
+                <h5 class="card-price">Price=${{productData.price}}</h5>
                 <hr class="featurette-divider">
-                <h5 class="card-price">Rating={{data.rating}}/5</h5>
+                <h5 class="card-price">Rating={{productData.rating}}/5</h5>
                 <hr class="featurette-divider">
-                <h5 class="card-price">Discount Percentage={{data.discountPercentage}}%</h5>
+                <h5 class="card-price">Discount Percentage={{productData.discountPercentage}}%</h5>
                 <hr class="featurette-divider">
-                <h5 class="card-price">Brand={{data.brand}}</h5>
+                <h5 class="card-price">Brand={{productData.brand}}</h5>
                 <hr class="featurette-divider">
-                <h5 class="card-price">Category={{data.category}}</h5>
+                <h5 class="card-price">Category={{productData.category}}</h5>
                 <hr class="featurette-divider">
-                <h5 class="card-price">Stock={{data.stock}}</h5>
+                <h5 class="card-price">Stock={{productData.stock}}</h5>
                 <hr class="featurette-divider">
-                <p class="card-text">Description={{data.description}}.</p>
+                <p class="card-text">Description={{productData.description}}.</p>
             </div>
         </div>
     </div>
@@ -43,11 +43,11 @@
 
 <!-- Modal -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel">{{data.title}}</h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel">{{productData.title}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
@@ -59,13 +59,13 @@
             </div>
             <div class="modal-body text-center">
                 <h5 class="">
-                    Total : ${{data.price*productQuantity}}
+                    Total : ${{productData.price*productQuantity}}
                 </h5>
             </div>
             <div class="modal-footer">
-                <button type="button" routerLink="/checkout" class="btn btn-primary" >CheckOut</button>
+                <button type="button" routerLink="/cart" class="btn btn-primary" >Cart</button>
             </div>
         </div>
     </div>
-</div>
-<!-- routerLink="/cart/{{data.id}}" -->
+</div> -->
+<!-- routerLink="/cart/{{productData.id}}" -->

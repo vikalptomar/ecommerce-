@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from '../admin.service';
+import { AdminService } from '../../services/admin.service';
+import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,12 +24,14 @@ export class LoginComponent {
       let data = res.users;
       let filter = data.filter((val: any) => {
         if ((val.email === this.loginform.value.email) && (val.password === this.loginform.value.password)) {
-
           const token = val;
-
-          localStorage.setItem('sessionToken', JSON.stringify(token));
-          console.log(token);
-
+          // localStorage.setItem('sessionToken', JSON.stringify(token));
+          
+          // To encrypt the local storage key using the CryptoJS library
+          const secretKey = 'my-secret-key';
+          const tokenKey = CryptoJS.AES.encrypt(JSON.stringify(token), secretKey).toString();
+          localStorage.setItem('sessionToken' , tokenKey)
+          
           this.router.navigate(['products']);
         }
         else {

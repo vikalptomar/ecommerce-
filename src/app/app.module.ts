@@ -7,19 +7,19 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { AllProductComponent } from './all-product/all-product.component';
-import { ProductsByIdComponent } from './product-by-id/product-by-id.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SignupComponent } from './signup/signup.component';
-import { AllUserComponent } from './all-user/all-user.component';
-import { HeaderComponent } from './header/header.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { ProductCategoryComponent } from './product-category/product-category.component';
-import { FooterComponent } from './footer/footer.component';
-import { CartComponent } from './cart/cart.component';
-import { SearchPipe } from './search.pipe';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { LoginComponent } from './login-signup/login/login.component';
+import { AllProductComponent } from './products/all-product/all-product.component';
+import { ProductsByIdComponent } from './products/product-by-id/product-by-id.component';
+import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
+import { SignupComponent } from './login-signup/signup/signup.component';
+import { AllUserComponent } from './user/all-user/all-user.component';
+import { HeaderComponent } from './common/header/header.component';
+import { ProfilePageComponent } from './user/profile-page/profile-page.component';
+import { ProductCategoryComponent } from './products/product-category/product-category.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { CartComponent } from './carts/cart/cart.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { CheckoutComponent } from './carts/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,

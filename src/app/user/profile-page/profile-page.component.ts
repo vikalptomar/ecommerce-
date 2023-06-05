@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminService } from '../admin.service';
+import { AdminService } from '../../services/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { faHome } from '@fortawesome/free-solid-svg-icons'; 
 
