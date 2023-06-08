@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit{
   homeicon = faHome;
   carticon = faCartShopping;
   list:any=[];
+
   constructor(private router: Router, private product_instance: ProductService) { }
+  
   @Output() parentfunc:EventEmitter<any>=new EventEmitter()
   ngOnInit(): void {
     this.product_instance.getProducts().subscribe((res:any)=>{

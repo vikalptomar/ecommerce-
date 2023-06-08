@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-by-id',
@@ -15,36 +16,25 @@ export class ProductsByIdComponent {
   homeicon = faHome;
   id?: any;
   cartItems: any = [];
-  constructor(private product_instance: ProductService, private route: ActivatedRoute, private routers: Router) {
+  
+  constructor(private product_instance: ProductService, private route: ActivatedRoute, private routers: Router, private cartservice: CartService) {
     this.id = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
     this.product_instance.getProductsById(this.id).subscribe((res) => {
-      // console.log(res);
+      console.log("value",res);
       this.productData = res;
     })
   }
 
-  addCart() {
-    //Retrieve the existing data from the local storage using the specified key.
-    const existingData = localStorage.getItem('cartItems');
-    if (existingData) {
-      this.cartItems = JSON.parse(existingData)
-    }
 
-    // Add the new product to the cartItems array.
-    const newProduct = this.productData;
-
-    this.cartItems.push(newProduct);
-    console.log(this.cartItems);
-
-    //Convert the cartItems array back to a JSON string using JSON.stringify().
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-    this.routers.navigate(['cart'])
+  addCart(id:number){
+    
+    this.cartservice.addCartData(id);    
 
   }
-
+  
   handelQuantity(data: any) {
     if (data === 'min' && this.productQuantity > 1) {
       this.productQuantity -= 1;
@@ -54,7 +44,24 @@ export class ProductsByIdComponent {
     }
     this.parentdata = this.productQuantity;
   }
-  destroy() {
-    localStorage.removeItem('cartItems')
-  }
 }
+
+
+  // addCart() {
+  //   //Retrieve the existing data from the local storage using the specified key.
+  //   const existingData = localStorage.getItem('cartItems');
+  //   if (existingData) {
+  //     this.cartItems = JSON.parse(existingData)
+  //   }
+
+  //   // Add the new product to the cartItems array.
+  //   const newProduct = this.productData;
+
+  //   this.cartItems.push(newProduct);
+  //   console.log(this.cartItems);
+
+  //   //Convert the cartItems array back to a JSON string using JSON.stringify().
+  //   localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  //   this.routers.navigate(['cart'])
+
+  // }

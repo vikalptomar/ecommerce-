@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
+import { CartService } from 'src/app/services/cart.service';
+// import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-product-category',
@@ -10,11 +11,14 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./product-category.component.scss']
 })
 export class ProductCategoryComponent {
-  constructor(private products: ProductService, private route: ActivatedRoute, private router: Router) { }
   homeicon=faHome;
   list: any = [];
   cat: string = '';
   filter='';
+  carticon = faCartShopping;
+
+  constructor(private products: ProductService, private route: ActivatedRoute, private router: Router, private cartService:CartService) { }
+
   ngOnInit(): void {
     this.cat = this.route.snapshot.params['category'];
     console.log(this.cat);
@@ -23,6 +27,9 @@ export class ProductCategoryComponent {
     })
   }
   
+  addCart(id:number){
+    this.cartService.addCartData(id);
+  }
   
   // searchForm=new FormGroup({
   //   title: new FormControl('')

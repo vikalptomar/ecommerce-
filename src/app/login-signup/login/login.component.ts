@@ -10,14 +10,13 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private users: AdminService, private router: Router) { }
-
+  message = "";
   loginform = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
   })
 
-  message = "";
+  constructor(private users: AdminService, private router: Router) { }
 
   login() {
     this.users.userLogin().subscribe((res: any) => {

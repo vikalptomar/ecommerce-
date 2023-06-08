@@ -41,7 +41,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../../assets/back1.jpg" class="bd-placeholder-img" width="100%" height="600" aria-hidden="true"
+        <img src="../../../assets/back1.jpg" class="bd-placeholder-img" width="100%" height="600" aria-hidden="true"
           preserveAspectRatio="xMidYMid slice" focusable="false" alt="img" srcset="">
         <div class="container">
           <div class="carousel-caption text-start">
@@ -88,32 +88,35 @@
   </div>
 
   <div *ngFor="let item of categoryList">
-    <section class="container-fluid px-5 py-3" id={{item}}>
-      <h1 class="pb-5 pt-5 text-center fs-1 fw-bold">{{item | uppercase}}</h1>
-      <div class="card-group" style="border-radius: 1rem;background-color: #efefef">
+    <section class="container-fluid px-5 py-3" style="background-color: black;" id={{item}}>
+      <h1 class="pb-5 pt-5 text-center fs-1 fw-bold" style="color: white;">{{item | uppercase}}</h1>
+      <div class="card-group">
         <div *ngFor="let itemList of list | search:filter:['title','category']">
           <div class="row" style="border-radius: 1rem;">
             <ng-container *ngIf="item === itemList.category" class="col">
-              <a  routerLink="/products/{{itemList.id}}" style="text-decoration:none;">
-                <div class="card p-3 bd-light border mx-4 mt-4" style="width: 20rem; ">
+              <div class="card text-center mt-2 mx-4 p-2" style="width: 20rem;background-color:black;">
+                <a routerLink="/products/{{itemList.id}}" style="text-decoration:none;">
                   <img src="{{itemList.thumbnail}}" class="card-img-top text-end" alt="..."
-                    style="height: 12rem;">
+                    style="height: 12rem;border-radius: 3rem;">
                   <div class="card-body">
-                    <h5 class="fs-6">{{itemList.title | uppercase}}
+                    <h5 class="fs-6" style="height: 2rem;color: white;">{{itemList.title | uppercase}}
                     </h5>
                   </div>
-                  <a routerLink="/cart" class="text-end"><button class="btn btn-outline-success ">Add Cart +</button></a>
+                </a>
+                <div>
+                  <a class="text-end"><button class="btn btn-outline-success" style="border-radius: 3rem;"
+                      (click)="addCart(itemList.id)">+ Cart</button></a>
                 </div>
-              </a>
+              </div>
             </ng-container>
           </div>
         </div>
-        <section class="container text-end mb-5">
-          <a routerLink="/product/{{item}}" class="btn btn-outline-secondary">See More</a>
-        </section>
       </div>
+      <div class="text-end pb-3 px-3">
+        <a routerLink="/product/{{item}}" class="btn btn-outline-secondary" style="border-radius: 3rem;">See More</a>
+      </div>
+      <hr class="featurette-divider" style="color:white">
     </section>
-    <hr class="featurette-divider">
   </div>
 
 </main>

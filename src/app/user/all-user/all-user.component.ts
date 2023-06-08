@@ -6,10 +6,12 @@ import { AdminService } from '../../services/admin.service';
   styleUrls: ['./all-user.component.scss']
 })
 export class AllUserComponent {
-  constructor(private allusers: AdminService) { }
-
+  
   list: any = [];
   filter = '';
+
+  constructor(private allusers: AdminService) { }
+  
   ngOnInit(): void {
     this.allusers.getAllUsers().subscribe((data: any) => {
       this.list = data.users;

@@ -1,25 +1,18 @@
-<nav class="navbar navbar-light bg-dark">
-    <div class="container-fluid">
-        <a class="nav-link active" aria-current="page" routerLink="/products">
-            <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
-    </div>
-</nav>
+<app-header></app-header>
 <section class="container text-center pt-3">
-    <div class="card-group" style="border-radius: 1rem;background-color:#efefef;">
-        <div class="card mx-3 my-3">
+    <div class="row" style="border-radius: 1rem;">
+        <div class="card col-4 m3" style="border: none;">
             <div class="text-center pt-3 pb-3">
                 <img src="{{productData.thumbnail}}" class="card-img-top"
                     style="border-radius: 1rem;width: 20rem;height: 20rem;" alt="...">
             </div>
-            <div class="text-end px-3 py-3">
-                <!-- <a routerLink="/cart"><button class="btn btn-outline-success">Add Cart +</button></a> -->
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" (click)="addCart()">
-                    Add Cart +
+            <div class="text-center p-3" >
+                <button type="button" class="btn btn-outline-success" style="border-radius: 3rem;" (click)="addCart(productData.id)">
+                    + Cart
                 </button>
             </div>
         </div>
-        <div class="card mx-3 my-3">
+        <div class="card col-8" style="border: 1rem solid;border-radius: 3rem;">
             <div class="card-body">
                 <h5 class="card-title">{{productData.title}}</h5>
                 <hr class="featurette-divider">

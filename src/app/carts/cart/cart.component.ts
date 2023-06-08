@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
+import { FormControl, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -8,53 +11,68 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CartComponent {
   data: any;
-  check: any;
-  id: any;
   cartItems: any[] = [];
+  totalproduct: any;
+  totPrice: any = 0
+  totDiscPrice: any = 0
+  countForPromo = 0;
 
-  constructor(private product: ProductService, private route: ActivatedRoute) { }
+  productQuantity: number = 1;
+  parentdata: number = 1;
+
+  couponForm = new FormGroup({
+    promo: new FormControl('')
+  })
+
+  constructor(private product: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
-   
-   
-    // this.product.getProductsById(this.id = this.route.snapshot.params['id']).subscribe((res) => {
-    //   const c=typeof(res.toString);this.cartItems = JSON.parse(c);
-    //   const existingCartItems = localStorage.getItem('cartItems');
-    //   if (existingCartItems) {
-    //     this.cartItems = JSON.parse(existingCartItems);
-    //   }
-    // })
-
+    let add = 0
     this.getCartItems();
+    this.totalproduct = this.cartItems.length;
 
-  }
-  // addToCart(item: any): void {
-  //   this.cartItems.push(item);
-  //   this.saveCartItems();
-  // }
-
-  getCartItems(){
-   let items:any = localStorage.getItem('cartItems');
-   this.cartItems = JSON.parse(items)
-    debugger;
-  }
-
-  removeFromCart(index: number): void {
-    this.cartItems.splice(index, 1);
-    this.saveCartItems();
-  }
-
-  saveCartItems(): void {
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-  }
-  cart() {
-    this.product.getProductsById(this.id = this.route.snapshot.params['id']).subscribe((res) => {
-      const cartvalue = res;
-      this.data = localStorage.setItem('cartdata', JSON.stringify(cartvalue));
-      console.log(this.data);
+    this.cartItems.filter((val) => {
+      this.totPrice += val.price;
+      this.totDiscPrice += ((val.price) - (((val.discountPercentage) * (val.price)) / 100))
     })
+
   }
-  checkcart() {
-    this.check = localStorage.removeItem('cartdata');
+
+  getCartItems() {
+    this.cartItems = this.cartService.getCartData()
+  }
+
+  removeFromCart(id: number) {
+    this.cartService.removeCartData(id);
+    this.getCartItems()
+  }
+
+
+  handelQuantity(data: any) {
+    // if (data === 'min' && this.productQuantity > 1) {
+    //   this.productQuantity -= 1;
+    // }
+    // else if (data === 'plus' && this.productQuantity < 10) {
+    //   this.productQuantity += 1;
+    // }
+    // this.parentdata = this.productQuantity;
+
+
+  }
+
+  checkCoupon() {
+    if (this.countForPromo == 0) {
+
+      if (this.couponForm.value.promo == "#megaBull's") {
+        this.totDiscPrice = (this.totDiscPrice - (((this.totDiscPrice)*70)/100)).toFixed(2)
+        this.countForPromo++;
+      }
+      else{
+        console.log("wrong code");
+        
+      }
+      console.log(this.totDiscPrice);
+      
+    }
   }
 }

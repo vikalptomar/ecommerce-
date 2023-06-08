@@ -21,29 +21,39 @@
 </section> -->
 
 <nav class="navbar navbar-light bg-dark">
-    <div class="container-fluid">
-        <a class="nav-link active" aria-current="page" routerLink="/products">
-            <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 2rem;"></fa-icon></a>
-        <form class="d-flex">
-            <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search" name="search"
-                [(ngModel)]="filter" style="color:black;font-size: 1.5rem;">
+    <div class="container-fluid row ">
+        <a class="text-start col-1" aria-current="page" routerLink="/products">
+            <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 1.5rem;"></fa-icon>
+        </a>
+        <form class=" col-3">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search"
+                [(ngModel)]="filter" style="color:black;font-size: 1rem;">
         </form>
+        <a class="text-end col-1" aria-current="page" routerLink="/cart">
+            <fa-icon [icon]="carticon" class="carticon px-5" style="color:white;font-size: 1.5rem;"></fa-icon>
+        </a>
     </div>
 </nav>
-<section class="container px-4 py-5 ">
+<section class="container-fluid px-4 py-5">
     <h1 class="mx-3 text-center">{{cat | uppercase}}</h1>
     <hr class="featurette-divider">
-    <div class="card-group" style="border-radius: 1rem; background-color:#efefef;">
+    <div class="card-group p-2" style="border-radius: 1rem; background-color:black;">
         <div *ngFor="let item of list | search:filter:['title']">
-            <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
-                <div class="card p-2 bd-light border mx-3 mt-4" style="width: 16rem; height: 19rem;">
-                    <img src="{{item.thumbnail}}" class="card-img-top" alt="..." style="width: 12rem; height: 12rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{item.title | uppercase}}
-                        </h5>
+            <div class="m-3 p-1 " style="background-color: black;border-radius: 1rem;">
+                <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
+                    <div class="card p-2 bd-light border mx-3 mt-4" style="width: 16rem; height: 19rem;">
+                        <img src="{{item.thumbnail}}" class="card-img-top" alt="..."
+                            >
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.title | uppercase}}
+                            </h5>
+                        </div>
                     </div>
+                </a>
+                <div class="text-center p-3">
+                    <button class="btn btn-outline-success" style="border-radius: 3rem;" (click)="addCart(item.id)">+ Cart</button>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </section>

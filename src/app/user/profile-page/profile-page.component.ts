@@ -10,9 +10,11 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProfilePageComponent {
 
-  constructor(private userDetail: AdminService, private route: ActivatedRoute) { }
   list: any = {};
   homeicon=faHome;
+
+  constructor(private userDetail: AdminService, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
     console.log("hi");
     // console.log(localStorage.getItem('sessionToken'));

@@ -16,8 +16,7 @@ export class AuthGuard2 implements CanActivate{
       // Session exists, perform automatic login or redirect to protected route
        this.router.navigate(['products']);
        return true;
-    } 
-    
+    }
     return true;
   }
 }

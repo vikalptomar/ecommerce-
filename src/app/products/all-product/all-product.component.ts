@@ -1,30 +1,21 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-all-product',
   templateUrl: './all-product.component.html',
   styleUrls: ['./all-product.component.scss']
 })
 export class AllProductComponent {
-  constructor(private product_instance: ProductService, private elementRef: ElementRef,private route: ActivatedRoute, private router: Router) { }
   list: any = [];
   filter='';
   categoryList: any =[];
-  parFunction(data: any){
-    console.log(data);  
-    this.filter=data; 
-  }
-  ngAfterViewInit() {
-    this.route.fragment.subscribe(fragment => {
-      if (fragment) {
-        const element = this.elementRef.nativeElement.querySelector(`#${fragment}`);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  }
+
+
+  constructor(private product_instance: ProductService, private elementRef: ElementRef,private route: ActivatedRoute, private router: Router,
+  private cartService:CartService) { }
+
   ngOnInit(): void {
     this.product_instance.getProducts().subscribe((data: any) => {
       this.list = data.products;
@@ -54,5 +45,31 @@ export class AllProductComponent {
       this.categoryList= Array.from(uniqueCategories);
       console.log(this.categoryList);
     })
+  }
+
+  parFunction(data: any){
+    console.log(data);  
+    this.filter=data; 
+  }
+
+  ngAfterViewInit() {
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        const element = this.elementRef.nativeElement.querySelector(`#${fragment}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  addCart(id:any){
+    console.log("cart clicked = ",id);    
+    let cartData=this.cartService.getCartData();
+    console.log(cartData);
+    this.cartService.addCartData(id);
+    // this.cartService.addCartData(id).filter((res)=>{
+    //   res
+    // })
   }
 }

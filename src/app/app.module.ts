@@ -20,8 +20,12 @@ import { FooterComponent } from './common/footer/footer.component';
 import { CartComponent } from './carts/cart/cart.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { CheckoutComponent } from './carts/checkout/checkout.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
+    
     AppComponent,
     LoginComponent,
     AllProductComponent,
@@ -35,7 +39,8 @@ import { CheckoutComponent } from './carts/checkout/checkout.component';
     FooterComponent,
     CartComponent,
     SearchPipe,
-    CheckoutComponent
+    CheckoutComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,13 @@ import { CheckoutComponent } from './carts/checkout/checkout.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

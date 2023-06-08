@@ -1,12 +1,176 @@
- <!-- <button (click)="cart()">create</button>
-<button (click)="addToCart()">Add</button>
-<button (click)="remove()">Remove</button> -->
-<button (click)="checkcart()">Check Remove</button>
+<app-header></app-header>
 
-<div *ngFor="let item of cartItems; let i = index">
-  Display item information
-  <h3>id={{ item.id }}</h3>
-  <h3>title={{ item.title }}</h3>
-  <h3>price={{ item.price }}</h3>
-  <button (click)="removeFromCart(i)">Remove item</button>
-</div> 
+<!-- section for 2 cards -->
+
+<section class="p-5 container">
+  <div class="row g-5">
+
+    <!-- card for cart items -->
+    <!-- ngfor will be used here -->
+    <div class="col-md-7 col-lg-8">
+      <h1 class="text-center fw-bold p-5">Cart Items</h1>
+      <hr class="featurette-divider">
+      <div class="card" style="border: none;" *ngFor="let item of cartItems;">
+        <div class="card" style="max-width: 65rem;border: none;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{item.thumbnail}}" class="img-fluid rounded-start" alt="...">
+
+              <!-- buttons for adding quantity of product -->
+              <div>
+                <div class="px-1 pt-2">
+                  <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2rem"
+                    (click)="handelQuantity('min')">-</button>
+                  <input class="text-center pb-1" style="width: 2rem;border: 0.5rem;" type="email"
+                    value="{{productQuantity}}">
+                  <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2rem"
+                    (click)="handelQuantity('plus')">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-light">{{item.title}}</h3>
+                <h4 class="card-text fw-light">Category: {{item.category}}</h4>
+                <div class="pt-5 px-2 text-center d-flex">
+                  <h5 class="card-text fw-light " style="text-decoration: line-through;">${{item.price}}</h5>
+                  <h5 class="card-text px-2">${{ ((item.price)-(((item.discountPercentage)*(item.price))/100)) |
+                    number:'.2-2' }}</h5>
+                  <p class="card-text fw-light px-2" style="color: green;">{{item.discountPercentage}}% Off</p>
+                </div>
+                <div>
+                  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeCart">Remove</button>
+                </div>
+
+                <!-- -------- -->
+                <!-- Modal -->
+                <div class="modal fade" id="removeCart" tabindex="-1" aria-labelledby="removeCartLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="removeCartLabel">Remove Item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to remove this item?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                        <a routerLink="/cart"><button type="button" class="btn btn-danger"
+                            (click)="removeFromCart(item.id)">Remove</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- -------- -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="featurette-divider">
+      </div>
+    </div>
+
+
+    <!-- card for Total price -->
+    <div class="col-md-5 col-lg-4 order-md-last position-fixed bottom-20 end-0 d-none d-md-block">
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">Price Details</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <h5 class="col text-start fw-normal">Items</h5>
+              <p class="col text-end">{{totalproduct}}</p>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <h5 class="col text-start fw-normal">Amount</h5>
+              <p class="col text-end">${{totPrice}}</p>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <h5 class="col-8 text-start fw-normal">Delivery Charges</h5>
+              <p class="col-4 text-end" style="color: green;">Free</p>
+            </div>
+          </li>
+        </ul>
+        <div class="card-body pt-2">
+          <form class="input-group" [formGroup]="couponForm" (ngSubmit)="checkCoupon()">
+            <input type="text" class="form-control" placeholder="Promo code" formControlName="promo">
+            <button type="submit" class="btn btn-success">Redeem</button>
+          </form>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <h4 class="col-8 text-start">Total Amount:</h4>
+            <h5 class="col-4 text-end">${{totDiscPrice | number:'.2-2'}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-8 text-start" style="color: green;">Saved:</h5>
+            <h5 class="col-4 text-end" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}</h5>
+          </div>
+          <hr class="featurette-divider">
+          <a routerLink="/checkout">
+            <button class="w-100 btn btn-primary btn-lg " type="submit">Continue to checkout</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- same div for mobile view -->
+    <div class="col-md-5 col-lg-4 order-md-last d-md-none">
+      <div class="card ">
+        <div class="card-body">
+          <h5 class="card-title">Price Details</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <h5 class="col text-start fw-normal">Items</h5>
+              <p class="col text-end">{{totalproduct}}</p>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <h5 class="col text-start fw-normal">Amount</h5>
+              <p class="col text-end">${{totPrice}}</p>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <h5 class="col-8 text-start fw-normal">Delivery Charges</h5>
+              <p class="col-4 text-end" style="color: green;">Free</p>
+            </div>
+          </li>
+        </ul>
+        <div class="card-body pt-2">
+          <form class="input-group" [formGroup]="couponForm" (ngSubmit)="checkCoupon()">
+            <input type="text" class="form-control" placeholder="Promo code" formControlName="promo">
+            <button type="submit" class="btn btn-success">Redeem</button>
+          </form>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <h4 class="col-8 text-start">Total Amount:</h4>
+            <h5 class="col-4 text-end">${{totDiscPrice | number:'.2-2'}}</h5>
+          </div>
+          <div class="row">
+            <h5 class="col-8 text-start" style="color: green;">Saved:</h5>
+            <h5 class="col-4 text-end" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}</h5>
+          </div>
+          <hr class="featurette-divider">
+          <a routerLink="/checkout">
+            <button class="w-100 btn btn-primary btn-lg " type="submit">Continue to checkout</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

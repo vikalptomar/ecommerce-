@@ -8,8 +8,11 @@ import { signUp } from '../../data-type';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
   constructor(private users: AdminService,private router:Router) { }
+
   ngOnInit(): void { }
+  
   signUp(data: signUp) {
     console.log(data);
     this.users.userSignUp(data).subscribe((res: any) => {
