@@ -3,12 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CommonService {
+export class CheckoutService {
 
-  constructor() { }
-
-  encryptSession(val:any[]){
-    
-  }
+  totalproductvalue: any
   
+  constructor() { }
 }

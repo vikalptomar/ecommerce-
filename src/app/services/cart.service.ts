@@ -72,4 +72,8 @@ export class CartService {
     }
   }
 
+  handelQuantitybyId(quantity : any,id : any){
+    
+  }
+  
 }

@@ -28,21 +28,10 @@ export class ProductsByIdComponent {
     })
   }
 
-
   addCart(id:number){
     
     this.cartservice.addCartData(id);    
 
-  }
-  
-  handelQuantity(data: any) {
-    if (data === 'min' && this.productQuantity > 1) {
-      this.productQuantity -= 1;
-    }
-    else if (data === 'plus' && this.productQuantity < 10) {
-      this.productQuantity += 1;
-    }
-    this.parentdata = this.productQuantity;
   }
 }
 

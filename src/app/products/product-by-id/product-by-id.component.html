@@ -1,18 +1,59 @@
 <app-header></app-header>
 <section class="container text-center pt-3">
-    <div class="row" style="border-radius: 1rem;">
-        <div class="card col-4 m3" style="border: none;">
-            <div class="text-center pt-3 pb-3">
-                <img src="{{productData.thumbnail}}" class="card-img-top"
-                    style="border-radius: 1rem;width: 20rem;height: 20rem;" alt="...">
+    <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">
+        <div class="card mx-3 my-3">
+            
+            <!-- for images carousel -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <img src="{{productData.thumbnail}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{productData.images[0]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{productData.images[1]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{productData.images[2]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="{{productData.images[3]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <div class="text-center p-3" >
-                <button type="button" class="btn btn-outline-success" style="border-radius: 3rem;" (click)="addCart(productData.id)">
+
+            <div class="text-center p-3">
+                <button type="button" class="btn btn-outline-success" style="border-radius: 3rem;"
+                    (click)="addCart(productData.id)">
                     + Cart
                 </button>
             </div>
         </div>
-        <div class="card col-8" style="border: 1rem solid;border-radius: 3rem;">
+        <div class="card mx-3 my-3" style="border: 0.6rem solid;border-radius: 3rem;">
             <div class="card-body">
                 <h5 class="card-title">{{productData.title}}</h5>
                 <hr class="featurette-divider">
@@ -34,31 +75,30 @@
     </div>
 </section>
 
-<!-- Modal -->
 
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel">{{productData.title}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- <section class="container text-center pt-3">
+    <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">
+        <div class="card mx-3 my-3">
+            <div class="text-center pt-3 pb-3">
+                <img src="{{arr.image}}" class="img-fluid rounded-start" alt="...">
             </div>
-            <div class="modal-body text-center">
-                <div class="pt-3">
-                    <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2.5rem" (click)="handelQuantity('min')">-</button>
-                    <input class="text-center pb-1" style="width: 2.5rem;border: 0.5rem;" type="number" value="{{productQuantity}}">
-                    <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 0.9rem;width: 2.5rem" (click)="handelQuantity('plus')">+</button>
-                </div>
-            </div>
-            <div class="modal-body text-center">
-                <h5 class="">
-                    Total : ${{productData.price*productQuantity}}
-                </h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" routerLink="/cart" class="btn btn-primary" >Cart</button>
+        </div>
+        <div class="card mx-3 my-3">
+            <div class="card-body">
+                <h5 class="card-title">First Name = {{arr.firstName}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Last Name = {{arr.lastName}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Miden Name={{arr.maidenName}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Age = {{arr.age}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">BloodGroup= {{arr.bloodGroup}}</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">eyeColor = {{arr.eyeColor}}/5</h5>
+                <hr class="featurette-divider">
+                <h5 class="card-price">Gender ={{arr.gender}}</h5>
             </div>
         </div>
     </div>
-</div> -->
-<!-- routerLink="/cart/{{productData.id}}" -->
+</section>  -->

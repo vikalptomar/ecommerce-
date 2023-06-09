@@ -20,7 +20,7 @@
     </div>
 </section> -->
 
-<nav class="navbar navbar-light bg-dark">
+<!-- <nav class="navbar navbar-light bg-dark">
     <div class="container-fluid row ">
         <a class="text-start col-1" aria-current="page" routerLink="/products">
             <fa-icon [icon]="homeicon" class="homeicon px-5" style="color:white;font-size: 1.5rem;"></fa-icon>
@@ -33,16 +33,22 @@
             <fa-icon [icon]="carticon" class="carticon px-5" style="color:white;font-size: 1.5rem;"></fa-icon>
         </a>
     </div>
-</nav>
+</nav> -->
+
+  
+<app-header></app-header>
+
+
+
 <section class="container-fluid px-4 py-5">
     <h1 class="mx-3 text-center">{{cat | uppercase}}</h1>
     <hr class="featurette-divider">
-    <div class="card-group p-2" style="border-radius: 1rem; background-color:black;">
+    <div class="card-group p-2" style="border-radius: 1rem; background-color:#efefef;">
         <div *ngFor="let item of list | search:filter:['title']">
-            <div class="m-3 p-1 " style="background-color: black;border-radius: 1rem;">
+            <div class="m-3 p-1 " style="background-color: #efefef;;border-radius: 1rem;">
                 <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
-                    <div class="card p-2 bd-light border mx-3 mt-4" style="width: 16rem; height: 19rem;">
-                        <img src="{{item.thumbnail}}" class="card-img-top" alt="..."
+                    <div class="card p-2 bd-light border mx-3 mt-1" style="width: 16rem; height: 22rem;">
+                        <img src="{{item.thumbnail}}" class="card-img-top" style="max-height: 14rem;" alt="..."
                             >
                         <div class="card-body">
                             <h5 class="card-title">{{item.title | uppercase}}
