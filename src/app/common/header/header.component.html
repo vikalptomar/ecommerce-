@@ -9,9 +9,9 @@
     <div class="collapse navbar-collapse px-5" id="navbarCollapse">
       <div class="navbar-nav me-auto mb-2 mb-md-0">
         <form class="d-flex justify-content-between">
-          <input [(ngModel)]="filter" (keyup)="test($event)" class="form-control me-2" type="search"
+          <input [(ngModel)]="filter" (keyup)="inputSearch($event)" class="form-control me-2" type="search"
             placeholder="Search Product" aria-label="Search" name="search" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
+            data-bs-target="#searchModal">
         </form>
       </div>
       <ul class="navbar-nav p-2 bd-highlight mb-2 mb-md-0">
@@ -73,33 +73,40 @@
   </div>
 </nav>
 
-
 <!-- modal -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filter">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="filter"
+          (keyup)="handleSearch()">
+
       </div>
       <div class="modal-body">
         <div class="pt-3 row">
-          <tr class="px-5 d-flex" *ngFor="let item of list | search:filter:['title','category']">
-            <!-- <div *ngIf="(keyup)==1"> -->
-              <a routerLink="/products/{{item.id}}" class="text-start col mx-4"
-                style="text-decoration: none;color: black;">
-                <th scope="row">{{item.title}}</th>
-              </a>
-              <a routerLink="/products/{{item.id}}" class="text-end col" style="text-decoration: none;color: black;">
-                <td>{{item.category}}</td>
-              </a>
-            <!-- </div> -->
-          </tr>
+          <table>
+            <tr class="px-5 d-flex" *ngFor="let item of filteredList">
+              <th class="text-start col mx-4">
+                <a [routerLink]="['/products', item.id]" (click)="setId(item.id)" data-bs-dismiss="modal"
+                  class="text-start col mx-4" style="text-decoration: none;color: black;">
+                  {{item.title}}
+                </a>
+              </th>
+              <td class="text-end col">
+                <a [routerLink]="['/product', item.category]" (click)="setId(item.category)" data-bs-dismiss="modal"
+                  style="text-decoration: none; color: black;">
+                  {{item.category}}
+                </a>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <!-- <ul class="list-group list-group-flush">

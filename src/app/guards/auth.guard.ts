@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
 
     var originalText = decryptKey.toString(CryptoJS.enc.Utf8);
 
-    console.log(JSON.parse(originalText))
+    // console.log(JSON.parse(originalText))
 
     if (!localStorage.getItem('sessionToken')) {
 

@@ -14,18 +14,26 @@ export class CartComponent {
   data: any;
   cartItems: any[] = [];
   totalproduct: any;
-  totPrice: any = 0
+  totPrice: any = 0;
   totDiscPrice: any = 0
-  countForPromo = 0;
+  countForPromo = 1;
   applied = "";
-  productQuantity: number = 1;
-  parentdata: number = 1;
+  productQuantity: any = [];
+  basetotPrice: any= [];
+
+  itemId:number=0;
+
 
   couponForm = new FormGroup({
     promo: new FormControl('')
   })
 
-  constructor(private product: ProductService, private route: ActivatedRoute, private cartService: CartService, private checkoutservice: CheckoutService) { }
+  constructor(private product: ProductService, private route: ActivatedRoute, private cartService: CartService, private checkoutservice: CheckoutService) {
+    let i = 0;
+    for (i = 0; i < 30; i++) {
+      this.productQuantity[i] = 1
+    }
+  }
 
   ngOnInit(): void {
     let add = 0
@@ -36,7 +44,6 @@ export class CartComponent {
       this.totPrice += val.price;
       this.totDiscPrice += ((val.price) - (((val.discountPercentage) * (val.price)) / 100))
     })
-
   }
 
   getCartItems() {
@@ -48,31 +55,41 @@ export class CartComponent {
     this.getCartItems()
   }
 
-  handelQuantity(data: any, id: number) {
+  async incQuantity(id: number) {
+    --id;
+    if (this.productQuantity[id] < 10) {
+      this.productQuantity[id] += 1
 
-    // if (data === 'min' && this.productQuantity > 1) {
-    //   this.productQuantity -= 1;
-    // }
-    // else if (data === 'plus' && this.productQuantity < 10) {
-    //   this.productQuantity += 1;
-    // }
-    // this.parentdata = this.productQuantity;
-    
-    this.cartService.getCartData().filter((res) => {
-      if (res.id == id) {
-        if (data === 'min' && this.productQuantity > 1) {
-          this.productQuantity -= 1;
+      await this.product.getProductsById(id+1).subscribe((val) => {
+        console.log(val);
+        this.basetotPrice = val;
+        if(this.productQuantity[id]>1){
+          console.log("base=", this.basetotPrice.price);
+          this.totPrice=this.totPrice + this.basetotPrice.price;
+          this.totDiscPrice += ((this.basetotPrice.price) - (((this.basetotPrice.discountPercentage) * (this.basetotPrice.price)) / 100))
         }
-        else if (data === 'plus' && this.productQuantity < 10) {
-          this.productQuantity += 1;
-        }
-        this.parentdata = this.productQuantity;
-      }
-      else{
-        this.productQuantity
-      }
-    })
+      })
+    }
+  }
+  async decQuantity(id: number) {
+    --id;
+    if (this.productQuantity[id] > 0) {
+      this.productQuantity[id] -= 1
 
+      await this.product.getProductsById(id+1).subscribe((val) => {
+        console.log(val);
+        this.basetotPrice = val;
+        if(this.productQuantity[id]>0){
+          console.log("base=", this.basetotPrice.price);
+          this.totPrice=this.totPrice - this.basetotPrice.price;
+          this.totDiscPrice -= ((this.basetotPrice.price) - (((this.basetotPrice.discountPercentage) * (this.basetotPrice.price)) / 100))
+        }
+      })
+    }
+  }
+
+  remove(id:number){
+    this.itemId = id;
   }
 
   checkCoupon() {

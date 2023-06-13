@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from 'src/app/services/cart.service';
+import { IdService } from 'src/app/services/id.service';
 // import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,26 +12,48 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./product-category.component.scss']
 })
 export class ProductCategoryComponent {
-  homeicon=faHome;
+  homeicon = faHome;
   list: any = [];
   cat: string = '';
-  filter='';
+  filter = '';
   carticon = faCartShopping;
 
-  constructor(private products: ProductService, private route: ActivatedRoute, private router: Router, private cartService:CartService) { }
+  constructor(
+    private products: ProductService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService,
+    private IdService: IdService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.cat = this.route.snapshot.params['category'];
-    console.log(this.cat);
+
+    this.getCategory()
+    // console.log(this.cat);
+
+    this.IdService.getId().subscribe((res) => {
+      if (res) {
+        this.cat = res;
+        this.getCategory();
+      }
+    })
+
+  }
+  getCategory() {
     this.products.getProducts().subscribe((res: any) => {
+      debugger
       this.list = res.products.filter((product: any) => product.category === this.cat)
+      debugger
     })
   }
-  
-  addCart(id:number){
+
+  addCart(id: number) {
     this.cartService.addCartData(id);
   }
-  
+
   // searchForm=new FormGroup({
   //   title: new FormControl('')
   // })

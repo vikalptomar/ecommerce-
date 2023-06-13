@@ -20,11 +20,11 @@
               <div>
                 <div class="px-1 pt-2">
                   <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2rem"
-                    (click)="handelQuantity('min',item.id)">-</button>
+                    (click)="decQuantity(item.id)">-</button>
                   <input class="text-center pb-1" style="width: 2rem;border: 0.5rem;" type="email" 
-                    value="{{productQuantity}}">
+                    [value]=productQuantity[item.id-1]>
                   <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2rem"
-                    (click)="handelQuantity('plus',item.id)">+</button>
+                    (click)="incQuantity(item.id)">+</button>
                 </div>
               </div>
             </div>
@@ -39,32 +39,15 @@
                     number:'.2-2' }}</h5>
                   <p class="card-text fw-light px-2" style="color: green;">{{item.discountPercentage}}% Off</p>
                 </div>
+                <!-- <div>
+                  <button class="btn btn-danger" (click)="removeFromCart(item.id)">Remove</button>
+                </div> -->
+                
                 <div>
-                  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeCart">Remove</button>
-                </div>
-
-                <!-- -------- -->
-                <!-- Modal -->
-                <div class="modal fade" id="removeCart" tabindex="-1" aria-labelledby="removeCartLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="removeCartLabel">Remove Item</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        Are you sure you want to remove this item?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                        <a routerLink="/cart"><button type="button" class="btn btn-danger"
-                            (click)="removeFromCart(item.id)">Remove</button></a>
-                      </div>
-                    </div>
-                  </div>
+                  <button class="btn btn-danger"  (click)="remove(item.id)"  data-bs-toggle="modal" data-bs-target="#removeCart">Remove</button>
                 </div>
                 <!-- -------- -->
+              
 
               </div>
             </div>
@@ -74,6 +57,28 @@
       </div>
     </div>
 
+      <!-- Modal -->
+      <div class="modal fade" id="removeCart" tabindex="-1" aria-labelledby="removeCartLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="removeCartLabel">Remove Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to remove this item?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            <a routerLink="/cart">
+              <button type="button" data-bs-dismiss="modal" class="btn btn-danger"
+                (click)="removeFromCart(this.itemId)">Remove</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------- -->
 
     <!-- card for Total price -->
     <div class="col-md-5 col-lg-4 order-md-last position-fixed bottom-20 end-0 d-none d-md-block">

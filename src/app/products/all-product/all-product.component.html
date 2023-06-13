@@ -1,34 +1,4 @@
 <app-header (parentfunc)="parFunction($event)"></app-header>
-<!-- <div class="center">
-  <table>
-    <thead>
-      <tr>
-        <th scope="col" style="text-align:center">ID</th>
-        <th scope="col" style="text-align:center">title</th>
-        <th scope="col" style="text-align:center">description</th>
-        <th scope="col" style="text-align:center">price</th>
-        <th scope="col" style="text-align:center">discountPercentage</th>
-        <th scope="col" style="text-align:center">rating</th>
-        <th scope="col" style="text-align:center">stock</th>
-        <th scope="col" style="text-align:center">brand</th>
-        <th scope="col" style="text-align:center">category</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of list">
-        <th scope="col" style="text-align:center">{{item.id}}</th>
-        <td>{{item.title}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.discountPercentage}}</td>
-        <td>{{item.rating}}</td>
-        <td>{{item.stock}}</td>
-        <td>{{item.brand}}</td>
-        <td>{{item.category}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
 
 <main>
 
@@ -87,37 +57,39 @@
     </button>
   </div>
 
-  <div *ngFor="let item of categoryList">
-    <section class="container-fluid px-5 py-3" style="background-color: #efefef;" id={{item}}>
+
+  <section *ngFor="let item of categoryList" class=" px-5 py-3" style="background-color: #efefef;" id={{item}}>
+    <div class="container-fluid">
+
+      <div  class="row" >
       <h1 class="pb-5 pt-5 text-center fs-1 fw-bold" style="color: black;">{{item | uppercase}}</h1>
-      <div class="card-group">
-        <div *ngFor="let itemList of list | search:filter:['title','category']">
-          <div class="row" style="border-radius: 1rem;">
-            <ng-container *ngIf="item === itemList.category" class="col">
-              <div class="card text-center mt-2 mx-4 p-2" style="width: 20rem;background-color:#efefef; border: none;">
-                <a routerLink="/products/{{itemList.id}}" style="text-decoration:none;">
-                  <img src="{{itemList.thumbnail}}" class="card-img-top text-end" alt="..."
-                    style="height: 12rem;border-radius: 3rem;">
-                  <div class="card-body">
-                    <h5 class="fs-6" style="height: 2rem;color: black;">{{itemList.title | uppercase}}
-                    </h5>
-                  </div>
-                </a>
-                <div>
-                  <a class="text-end"><button class="btn btn-outline-success" style="border-radius: 3rem;"
-                      (click)="addCart(itemList.id)">+ Cart</button></a>
+    </div>
+        <div class="row" style="border-radius: 1rem;">
+          <div class="col-md-3" *ngFor="let itemList of  Itemfilter(item)">
+            <div class="card text-center p-2" style="border-radius: 2rem;border: none;background-color:#efefef;">
+              <a routerLink="/products/{{itemList.id}}" >
+                <img src="{{itemList.thumbnail}}" class="card-img-top text-end" alt="..."
+                  style="height: 280px;border-radius: 2rem;">
+                <div class="card-body ">
+                  <h5 class="fs-6 text-sm" style="height: 5rem;">{{itemList.title | uppercase}}
+                  </h5>
                 </div>
+              </a>
+              <div class="pb-5 pt-0">
+                <a class="text-end"><button class="btn btn-outline-success" style="border-radius: 3rem;"
+                    (click)="addCart(itemList.id)">+ Cart</button></a>
               </div>
-            </ng-container>
+            </div>
           </div>
         </div>
       </div>
-      <div class="text-end pb-3 px-3">
+      <div class="text-center pt-4">
         <a routerLink="/product/{{item}}" class="btn btn-outline-secondary" style="border-radius: 3rem;">See More</a>
       </div>
       <hr class="featurette-divider" style="color:white">
-    </section>
-  </div>
+ 
+  </section>
+
 
 </main>
 

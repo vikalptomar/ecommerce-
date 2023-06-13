@@ -2,7 +2,7 @@
 <section class="container text-center pt-3">
     <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">
         <div class="card mx-3 my-3">
-            
+
             <!-- for images carousel -->
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -19,19 +19,24 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="2000">
-                        <img src="{{productData.thumbnail}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                        <img src="{{productData.thumbnail}}" class="img-fluid rounded-start d-block w-100"
+                            style="max-height: 30rem;" alt="...">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{productData.images[0]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                        <img src="{{productData.images[0]}}" class="img-fluid rounded-start d-block w-100"
+                            style="max-height: 30rem;" alt="...">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{productData.images[1]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                        <img src="{{productData.images[1]}}" class="img-fluid rounded-start d-block w-100"
+                            style="max-height: 30rem;" alt="...">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{productData.images[2]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                        <img src="{{productData.images[2]}}" class="img-fluid rounded-start d-block w-100"
+                            style="max-height: 30rem;" alt="...">
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src="{{productData.images[3]}}" class="img-fluid rounded-start d-block w-100" style="max-height: 30rem;" alt="...">
+                        <img src="{{productData.images[3]}}" class="img-fluid rounded-start d-block w-100"
+                            style="max-height: 30rem;" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -73,8 +78,14 @@
             </div>
         </div>
     </div>
-</section>
+    <button routerLink="/products/1" (click)="getid(1)">1</button>
+    <button routerLink="/products/2" (click)="getid(2)">2</button>
+    <button routerLink="/products/3" (click)="getid(3)">3</button>
+    <button routerLink="/cart">cart</button>
+    <button routerLink="/products">products</button>
 
+
+</section>
 
 <!-- <section class="container text-center pt-3">
     <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">

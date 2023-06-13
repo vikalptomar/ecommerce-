@@ -28,6 +28,7 @@ export class AllProductComponent {
 
       // Use map() to extract categories into a new array (we can also use for loop)
       let categoriesArray = this.list.map(function (item: any) {
+        debugger;
         return item.category;
       });
 
@@ -72,4 +73,10 @@ export class AllProductComponent {
     //   res
     // })
   }
+
+  Itemfilter(catName:any){
+    let filterItems = this.list.filter((item:any)=> item.category === catName).splice(0, 4)
+    return filterItems
+  }
+
 }
