@@ -1,7 +1,11 @@
-
-
-
 <!-- section for head -->
+
+
+<button class="btn position-fixed bottom-0 end-0 mb-5 mx-2" (click)="scrollToTop()" *ngIf="isScrolledDown"
+  style="z-index: 1;border: none;">
+  <fa-icon [icon]="faArrowCircleUp" class="faArrowCircleUp fs-1" style="color:#010f1c;cursor: pointer;"></fa-icon>
+</button>
+
 
 <section class="container mx-3 px-5 pt-5 pb-50">
 
@@ -21,7 +25,7 @@
   <div class="row g-5">
 
     <!-- section for body -->
-    
+
     <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
     <section class="tp-cart-area pb-120">
       <div class="container">
@@ -138,10 +142,11 @@
               <div class="card-footer bg-transparent row py-3">
                 <h5 class="col-6 text-start fs-5">Total</h5>
                 <h5 class="col-6 text-center fs-6">{{totDiscPrice| currency: 'USD'}}</h5>
-          
-                  <h5 class="col-6 text-start fs-6 mt-2" style="color: green;">Saved</h5>
-                  <h5 class="col-6 text-center fs-6 mt-2" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}</h5>
-              
+
+                <h5 class="col-6 text-start fs-6 mt-2" style="color: green;">Saved</h5>
+                <h5 class="col-6 text-center fs-6 mt-2" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}
+                </h5>
+
               </div>
               <a routerLink="/checkout">
                 <div class="text-center">
@@ -156,7 +161,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
 
@@ -174,7 +179,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
             <a href="http://localhost:4200/cart">
-              <a ></a>
+              <a></a>
               <button type="button" data-bs-dismiss="modal" class="btn btn-danger"
                 (click)="removeFromCart(this.itemId)">Remove</button></a>
           </div>
@@ -182,3 +187,5 @@
       </div>
     </div>
     <!-- -------- -->
+  </div>
+</section>

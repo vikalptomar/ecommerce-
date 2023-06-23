@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CheckoutService } from 'src/app/services/checkout.service';
-import { faAdd, faSubtract, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faArrowCircleUp, faSubtract, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { IdService } from 'src/app/services/id.service';
 
 @Component({
@@ -26,7 +26,8 @@ export class CartComponent {
   faAdd = faAdd;
   faSubtract = faSubtract;
   faTrash = faTrashCan;
-
+  faArrowCircleUp = faArrowCircleUp
+  isScrolledDown: boolean = false;// for button to scroll
   itemId: number = 0;
 
 
@@ -45,6 +46,17 @@ export class CartComponent {
       this.productQuantity[i] = 1
     }
   }
+
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    this.isScrolledDown = (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) > 200;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 
   ngOnInit(): void {
     let add = 0
