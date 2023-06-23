@@ -1,9 +1,173 @@
-<app-header></app-header>
-<section class="container text-center pt-3">
+<!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+
+<div *ngIf="isLoading">
+    <app-loader></app-loader>
+</div>
+
+<div *ngIf="isLoading===false">
+    
+    <section class="container">
+        <div class="breadcrumb pt-5 pb-4">
+            <span class="breadcrumb-item"><a href="/" style="text-decoration:none;color: #A8ACB0;">Home</a></span>
+            <span class="breadcrumb-item"><a href="/product/{{productData.category}}" style="text-decoration:none;color: #A8ACB0;">{{productData.category | titlecase}}</a></span>
+            <span class="breadcrumb-item" style="color: #A8ACB0;">{{productData.title | titlecase}}</span>
+          </div>
+        <div class="row">
+            <div class="col-xl-5 pt-2 col-lg-5">
+                <div class="d-flex align-items-start flex-column  flex-md-row">
+                    <div class="nav flex-md-column flex-row me-3" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <div class="m-1" style="border: none; background-color:#f1f3f4;">
+                            <a class="nav-link active" id="first-tab" data-bs-toggle="pill" data-bs-target="#first"
+                                type="button" role="tab" aria-controls="first" aria-selected="true"
+                                style="text-decoration: none;">
+                                <img src="{{productData.thumbnail}}"
+                                    style="width: 80px; height: 80px; object-fit: cover; vertical-align: middle;"
+                                    alt="img">
+                            </a>
+                        </div>
+
+                        <div class="m-1" style="border: none; background-color:#f1f3f4;">
+                            <a class="nav-link" id="second-tab" data-bs-toggle="pill" data-bs-target="#second"
+                                type="button" role="tab" aria-controls="second" aria-selected="false"
+                                style="text-decoration: none;">
+                                <img src="{{productData.images[0]}}"
+                                    style="width: 80px; height: 80px; object-fit: cover; vertical-align: middle;"
+                                    alt="img">
+                            </a>
+                        </div>
+
+                        <div class="m-1" style="border: none; background-color:#f1f3f4;">
+                            <a class="nav-link" id="third-tab" data-bs-toggle="pill" data-bs-target="#third"
+                                type="button" role="tab" aria-controls="third" aria-selected="false"
+                                style="text-decoration: none;">
+                                <img src="{{productData.images[1]}}"
+                                    style="width: 80px; height: 80px; object-fit: cover; vertical-align: middle;"
+                                    alt="img">
+                            </a>
+                        </div>
+
+                        <div class="m-1" style="border: none; background-color:#f1f3f4;">
+                            <a class="nav-link" id="fourth-tab" data-bs-toggle="pill" data-bs-target="#fourth"
+                                type="button" role="tab" aria-controls="fourth" aria-selected="false"
+                                style="text-decoration: none;">
+                                <img src="{{productData.images[2]}}"
+                                    style="width: 80px; height: 80px; object-fit: cover; vertical-align: middle;"
+                                    alt="img">
+                            </a>
+                        </div>
+
+                        <div class="m-1" style="border: none; background-color:#f1f3f4;">
+                            <button class="nav-link" id="fifth-tab" data-bs-toggle="pill" data-bs-target="#fifth"
+                                type="button" role="tab" aria-controls="fifth" aria-selected="false"
+                                style="text-decoration: none;">
+                                <img src="{{productData.images[3]}}"
+                                    style="width: 80px; height: 80px; object-fit: cover; vertical-align: middle;"
+                                    alt="img">
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-content mx-2" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                            <img src="{{productData.thumbnail}}"
+                                style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);width: 100%;object-fit: cover; vertical-align: middle;"
+                                alt="img">
+                        </div>
+                        <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+                            <img src="{{productData.images[0]}}"
+                                style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);width: 100%;object-fit: cover; vertical-align: middle;"
+                                alt="img">
+                        </div>
+                        <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+                            <img src="{{productData.images[1]}}"
+                                style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);width: 100%;object-fit: cover; vertical-align: middle;"
+                                alt="img">
+                        </div>
+                        <div class="tab-pane fade" id="fourth" role="tabpanel" aria-labelledby="fourth-tab">
+                            <img src="{{productData.images[2]}}"
+                                style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);width: 100%;object-fit: cover; vertical-align: middle;"
+                                alt="img">
+                        </div>
+                        <div class="tab-pane fade" id="fifth" role="tabpanel" aria-labelledby="fifth-tab">
+                            <img src="{{productData.images[3]}}"
+                                style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);width: 100%;object-fit: cover; vertical-align: middle;"
+                                alt="img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7 pt-5 col-lg-7 ">
+                <div class="g-2 text-center ">
+                    <div class="card mb-3" style="border: none;">
+                        <div class="card-header text-start" style="border: none;background-color: white;">
+                            <h5 class="fs-6" style="color: #adb8c5;">{{productData.category | titlecase}}</h5>
+                            <h5 style="color: #adb8c5;">Brand : {{productData.brand}}</h5>
+                            <h2 style="color: #010f1c;">{{productData.title | titlecase}}</h2>
+                            <h5 class="fs-6 " style="color: #0989FF;">({{productData.stock}}), In Stock
+                                <span class="px-3 fs-2" style="color: #ffb21d;">{{productData.rating | rating}}
+                                </span>
+                            </h5>
+                        </div>
+                        <div class="card-body" style="border: none;">
+                            <h5 class="card-text text-start fs-6" style="color: #55585B"> Product Detail :
+                                {{productData.description| titlecase}}
+                            </h5>
+                            <h5 class="text-start pb-2" style="color: green;">Sale : {{productData.discountPercentage}}%
+                                Off
+                            </h5>
+                            <h5 class="card-text text-start pt-2">
+                                <span class="fs-5"
+                                    style="color: #55585B; text-decoration: line-through;">{{productData.price |
+                                    currency:
+                                    'USD'}}</span>
+                                <span class="fs-2 px-3"
+                                    style="color: #010f1c;">{{((productData.price)-((productData.price*productData.discountPercentage)/100))
+                                    | currency:'USD'}}</span>
+                            </h5>
+                        </div>
+                        <div class="card-footer text-start pt-2" style="border: none;background-color: white;">
+                            <button class="btn w-50" style="background-color: #0989ff;transition: transform 0.5s ease;" type="submit"
+                                (click)="addCart(productData.id)" onmouseover="this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.transform='scale(1)'">
+                                <h5 class="text-center fs-6 m-0" style="color: white;">Add To Cart</h5>
+                            </button>
+                        </div>
+
+                        <div class="card-footer text-start" style="border: none;background-color: white;">
+                            <a routerLink="/checkout">
+                                <button class="btn w-50" style="background-color: #010f1c;transition: transform 0.5s ease;" (click)="checkout()"
+                                    type="submit" onmouseover="this.style.transform='scale(1.05)'"
+                                    onmouseout="this.style.transform='scale(1)'">
+                                    <h5 class="text-center fs-6 m-0" style="color: white;">Buy Now</h5>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+<!-- <section class="container text-center pt-3">
     <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">
         <div class="card mx-3 my-3">
 
-            <!-- for images carousel -->
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -78,14 +242,11 @@
             </div>
         </div>
     </div>
-    <button routerLink="/products/1" (click)="getid(1)">1</button>
-    <button routerLink="/products/2" (click)="getid(2)">2</button>
-    <button routerLink="/products/3" (click)="getid(3)">3</button>
-    <button routerLink="/cart">cart</button>
-    <button routerLink="/products">products</button>
 
 
-</section>
+</section> -->
+
+
 
 <!-- <section class="container text-center pt-3">
     <div class="card-group " style="border-radius: 1rem; background-color:#efefef;">

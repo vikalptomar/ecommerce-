@@ -1,65 +1,167 @@
-<app-header></app-header>
 
-<!-- section for 2 cards -->
 
-<section class="p-5 container">
-  <div class="row g-5">
 
-    <!-- card for cart items -->
-    <!-- ngfor will be used here -->
-    <div class="col-md-7 col-lg-8">
-      <h1 class="text-center fw-bold p-5" style="background-color: black; color: white; border-radius: 3rem;">Cart Items</h1>
-      <hr class="featurette-divider">
-      <div class="card" style="border: none;" *ngFor="let item of cartItems;">
-        <div class="card" style="max-width: 65rem;border: none;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <a routerLink="/products/{{item.id}}"><img src="{{item.thumbnail}}" class="img-fluid rounded-start" alt="..."></a>
+<!-- section for head -->
 
-              <!-- buttons for adding quantity of product -->
-              <div>
-                <div class="px-1 pt-2">
-                  <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2rem"
-                    (click)="decQuantity(item.id)">-</button>
-                  <input class="text-center pb-1" style="width: 2rem;border: 0.5rem;" type="email" 
-                    [value]=productQuantity[item.id-1]>
-                  <button class="btn btn-outline-success mx-1 text-center" style="border-radius: 1rem;width: 2rem"
-                    (click)="incQuantity(item.id)">+</button>
-                </div>
-              </div>
-            </div>
+<section class="container mx-3 px-5 pt-5 pb-50">
 
-            <div class="col-md-8">
-              <div class="card-body">
-                <a routerLink="/products/{{item.id}}" style="text-decoration: none;"><h3 class="card-title fw-light">{{item.title | uppercase}}</h3></a>
-                <h4 class="card-text fw-light">Category: {{item.category}}</h4>
-                <div class="pt-5 px-2 text-center d-flex">
-                  <h5 class="card-text fw-light " style="text-decoration: line-through;">${{item.price}}</h5>
-                  <h5 class="card-text px-2">${{ ((item.price)-(((item.discountPercentage)*(item.price))/100)) |
-                    number:'.2-2' }}</h5>
-                  <p class="card-text fw-light px-2" style="color: green;">{{item.discountPercentage}}% Off</p>
-                </div>
-                <!-- <div>
-                  <button class="btn btn-danger" (click)="removeFromCart(item.id)">Remove</button>
-                </div> -->
-                
-                <div>
-                  <button class="btn btn-danger"  (click)="remove(item.id)"  data-bs-toggle="modal" data-bs-target="#removeCart">Remove</button>
-                </div>
-                <!-- -------- -->
-              
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="featurette-divider">
+  <div class="row pt-5">
+    <div class="col-xxl-12">
+      <h1 class="font-weight-bold " style="color: #010f1c;font-size: 50px;">Shopping Cart</h1>
+      <div class="breadcrumb pb-5">
+        <span class="breadcrumb-item"><a href="#" style="text-decoration:none;color: #A8ACB0;">Home</a></span>
+        <span class="breadcrumb-item" style="color: #A8ACB0;">Shopping Cart</span>
       </div>
     </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="removeCart" tabindex="-1" aria-labelledby="removeCartLabel"
-      aria-hidden="true">
+  </div>
+</section>
+
+<section class="container-fluid px-5 pt-95 pb-50">
+  <div class="row g-5">
+
+    <!-- section for body -->
+    
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+    <section class="tp-cart-area pb-120">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-8">
+            <div class="mb-25 mr-30">
+              <table class="table">
+                <thead style="background-color: #f1f3f4;">
+                  <tr>
+                    <th colspan="2" class="tp-cart-header-product">Product</th>
+                    <th class="tp-cart-header-price mx-5">Price</th>
+                    <th class="tp-cart-header-quantity">Quantity</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of cartItems;">
+                    <!-- img -->
+                    <td class="">
+                      <a routerLink="/products/{{item.id}}">
+                        <img src="{{item.thumbnail}}"
+                          style="width: 78px; height: 100px; object-fit: cover; vertical-align: middle;" alt="img">
+                      </a>
+                    </td>
+                    <!-- title -->
+                    <td class="align-middle">
+                      <a routerLink="/products/{{item.id}}" style="text-decoration: none;">
+                        <p style="color: black;">
+                          {{item.title | titlecase}}
+                          <p>
+                      </a>
+                    </td>
+                    <!-- price -->
+                    <td class="align-middle">
+                      <!-- <span>
+                        <p class="fw-light px-2" style="text-decoration: line-through;">
+                          ${{item.price}}
+                        </p>
+                      </span> -->
+                      <span>
+                        <p class="px-2">
+                          {{ ((item.price)-(((item.discountPercentage)*(item.price))/100)) | currency: 'USD' }}
+                        </p>
+                      </span>
+                      <!-- <span>
+                        <p class="fw-light px-2" style="color: green;">
+                          {{item.discountPercentage}}% Off
+                        </p>
+                      </span> -->
+                    </td>
+
+                    <!-- quantity -->
+                    <td class="tp-cart-quantity align-middle">
+                      <div class="tp-product-quantity mt-10 mb-10"
+                        style="border: 2px solid #f1f3f4; border-radius: 2rem; width: 93px;">
+                        <span class="tp-cart-minus">
+                          <button class="btn btn-sm text-center" style="border: none;" (click)="decQuantity(item.id)">
+                            <fa-icon [icon]="faSubtract" class="faSubtract"></fa-icon>
+                          </button>
+                        </span>
+                        <input class="text-center pb-1 " style="width: 2rem;border:none;" type="email"
+                          [value]=productQuantity[item.id-1]>
+                        <span class="tp-cart-plus">
+                          <button class="btn btn-sm text-center" style="border:none;" (click)="incQuantity(item.id)">
+                            <fa-icon [icon]="faAdd" class="faSubtract"></fa-icon>
+                          </button>
+                        </span>
+                      </div>
+                    </td>
+                    <!-- action -->
+                    <td class="tp-cart-action align-middle">
+                      <button class="btn" style="border: none;" (click)="remove(item.id)" data-bs-toggle="modal"
+                        data-bs-target="#removeCart" onmouseover="this.style.transform = 'scale(1.6)'"
+                        onmouseout="this.style.transform = 'scale(1.2)'">
+                        <fa-icon [icon]="faTrash" class="faTrash" style="color: rgba(173, 17, 0, 0.89);"></fa-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-6">
+
+            <div class="card px-3 py-3" style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);border: none;">
+              <div class="card-header bg-transparent row">
+                <h5 class="col text-start fs-5">Subtotal</h5>
+                <h5 class="col text-center mx-3 fs-6">{{totPrice| currency: 'USD'}}</h5>
+              </div>
+              <div class="card-body p-0 my-3 ">
+                <ul>
+                  <li>
+                    <div class="row">
+                      <h5 class="col text-start fs-6">Items</h5>
+                      <p class="col text-center mx-3 fs-6">{{totalproduct}}</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row">
+                      <h5 class="col text-start fs-6">Delivery Charges</h5>
+                      <p class="col text-center mx-3 fs-6" style="color: green;">Free</p>
+                    </div>
+                  </li>
+                </ul>
+                <p class="text-center mb-2 fs-6" style="color: rgb(140, 255, 127);">70% off (#megaBull's).</p>
+                <div class="card-body pt-2">
+                  <form class="input-group" [formGroup]="couponForm" (ngSubmit)="checkCoupon()">
+                    <input type="email" class="form-control" placeholder="Coupon" formControlName="promo">
+                    <button type="submit" class="btn btn-sm btn-success">Redeem</button>
+                  </form>
+                  <p class="text-center" style="color: orange;">{{applied}}</p>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent row py-3">
+                <h5 class="col-6 text-start fs-5">Total</h5>
+                <h5 class="col-6 text-center fs-6">{{totDiscPrice| currency: 'USD'}}</h5>
+          
+                  <h5 class="col-6 text-start fs-6 mt-2" style="color: green;">Saved</h5>
+                  <h5 class="col-6 text-center fs-6 mt-2" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}</h5>
+              
+              </div>
+              <a routerLink="/checkout">
+                <div class="text-center">
+                  <button class="btn w-100" style="background-color: #010f1c;" type="submit" (click)="checkout()"
+                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <h5 class="text-center fs-6 m-0" style="color: white;">Continue to checkout</h5>
+                  </button>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+    <!-- Modal For remove item -->
+    <div class="modal fade" id="removeCart" tabindex="-1" aria-labelledby="removeCartLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -71,7 +173,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-            <a routerLink="/cart">
+            <a href="http://localhost:4200/cart">
+              <a ></a>
               <button type="button" data-bs-dismiss="modal" class="btn btn-danger"
                 (click)="removeFromCart(this.itemId)">Remove</button></a>
           </div>
@@ -79,107 +182,3 @@
       </div>
     </div>
     <!-- -------- -->
-
-    <!-- card for Total price -->
-    <div class="col-md-5 col-lg-4 order-md-last position-fixed bottom-20 end-0 d-none d-md-block">
-      <div class="card" style="border-radius: 2rem;">
-        <div class="card-body">
-          <h5 class="card-title">Price Details</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="row">
-              <h5 class="col text-start fw-normal">Items</h5>
-              <p class="col text-end">{{totalproduct}}</p>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-              <h5 class="col text-start fw-normal">Amount</h5>
-              <p class="col text-end">${{totPrice}}</p>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-              <h5 class="col-8 text-start fw-normal">Delivery Charges</h5>
-              <p class="col-4 text-end" style="color: green;">Free</p>
-            </div>
-          </li>
-        </ul>
-        <p class="text-center pt-4 mb-1" style="color: rgb(140, 255, 127);">70% off use coupon(#megaBull's).</p>
-        <div class="card-body pt-2">
-          <form class="input-group" [formGroup]="couponForm" (ngSubmit)="checkCoupon()">
-            <input type="text" class="form-control" placeholder="Promo code" formControlName="promo">
-            <button type="submit" class="btn btn-success">Redeem</button>
-          </form>
-          <p class="text-center" style="color: orange;">{{applied}}</p>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <h4 class="col-8 text-start">Total Amount:</h4>
-            <h5 class="col-4 text-end">${{totDiscPrice | number:'.2-2'}}</h5>
-          </div>
-          <div class="row">
-            <h5 class="col-8 text-start" style="color: green;">Saved:</h5>
-            <h5 class="col-4 text-end" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}</h5>
-          </div>
-          <hr class="featurette-divider">
-          <a routerLink="/checkout">
-            <button class="w-100 btn btn-primary btn-lg " type="submit" (click)="checkout()">Continue to checkout</button>
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- same div for mobile view -->
-    <div class="col-md-5 col-lg-4 order-md-last d-md-none">
-      <div class="card" style="border-radius: 2rem;">
-        <div class="card-body">
-          <h5 class="card-title">Price Details</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <div class="row">
-              <h5 class="col text-start fw-normal">Items</h5>
-              <p class="col text-end">{{totalproduct}}</p>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-              <h5 class="col text-start fw-normal">Amount</h5>
-              <p class="col text-end">${{totPrice}}</p>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-              <h5 class="col-8 text-start fw-normal">Delivery Charges</h5>
-              <p class="col-4 text-end" style="color: green;">Free</p>
-            </div>
-          </li>
-        </ul>
-        <p class="text-center pt-4 mb-1" style="color: rgb(140, 255, 127);">70% off use coupon(#megaBull's).</p>
-        <div class="card-body pt-2">
-          <form class="input-group" [formGroup]="couponForm" (ngSubmit)="checkCoupon()">
-            <input type="text" class="form-control" placeholder="Promo code" formControlName="promo">
-            <button type="submit" class="btn btn-success">Redeem</button>
-          </form>
-          <p class="text-center" style="color: orange;">{{applied}}</p>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <h4 class="col-8 text-start">Total Amount:</h4>
-            <h5 class="col-4 text-end">${{totDiscPrice | number:'.2-2'}}</h5>
-          </div>
-          <div class="row">
-            <h5 class="col-8 text-start" style="color: green;">Saved:</h5>
-            <h5 class="col-4 text-end" style="color: green;">${{totPrice-totDiscPrice | number:'.2-2'}}</h5>
-          </div>
-          <hr class="featurette-divider">
-          <a routerLink="/checkout">
-            <button class="w-100 btn btn-primary btn-lg " type="submit" (click)="checkout()">Continue to checkout</button>
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>

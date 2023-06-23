@@ -22,6 +22,8 @@ import { SearchPipe } from './pipes/search.pipe';
 import { CheckoutComponent } from './carts/checkout/checkout.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RatingPipe } from './pipes/rating.pipe';
+import { LoaderComponent } from './common/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartComponent,
     SearchPipe,
     CheckoutComponent,
+    RatingPipe,
+    LoaderComponent,
   
   ],
   imports: [

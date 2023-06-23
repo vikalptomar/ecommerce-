@@ -1,5 +1,167 @@
-<app-header (parentfunc)="parFunction($event)"></app-header>
+<div *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
 
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+<div *ngIf="isLoading==false">
+
+  <!-- <app-header (parentfunc)="parFunction($event)"></app-header> -->
+
+  <button class="btn position-fixed bottom-0 end-0 mb-5 mx-2" (click)="scrollToTop()" *ngIf="isScrolledDown"
+    style="z-index: 1;border: none;">
+    <fa-icon [icon]="faArrowCircleUp" class="faArrowCircleUp fs-1" style="color:#010f1c;cursor: pointer;"></fa-icon>
+  </button>
+
+  <main>
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2500">
+          <img src="../../../assets/back1.jpg" class="d-block w-100" style="height: 70vh;" alt="...">
+          <div class="carousel-caption row">
+            <div class="col col-lg-4 text-start">
+              <div class="pb-2">
+                <h1 class="fw-bold" style="color: white;">The <span style="color: #e4062b">BULL'S </span>Collection 2023
+                </h1>
+                <h5 class="fs-6 fst-italic fw-bold" style="color: white;">Exclusive offer <span class="fs-5"
+                    style="color: #e4062b;text-decoration: underline;">-70%</span> off this week.</h5>
+              </div>
+              <div class="pt-2">
+                <img src="../../../assets/placeholder.png" class="" style="max-width: 150px;" alt="...">
+              </div>
+            </div>
+            <div class="col ">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2500">
+          <img src="../../../assets/back2.jpg" class="d-block w-100" style="height: 70vh;" alt="...">
+          <div class="carousel-caption row">
+            <div class="col ">
+            </div>
+            <div class="col col-lg-4 text-start">
+              <div class="pb-2">
+                <h1 class="fw-bold" style="color: #010f1c;">The <span style="color: #ea7493">BULL'S </span>Collection
+                  2023
+                </h1>
+                <h5 class="fs-6 fst-italic fw-bold" style="color: #010f1c;">Exclusive offer <span class="fs-5"
+                    style="color: #ea7493;text-decoration: underline;">-70%</span> off this week.</h5>
+              </div>
+              <div class="pt-2">
+                <img src="../../../assets/placeholder2.png" class="" style="max-width: 150px;" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2500">
+          <img src="../../../assets/back3.jpg" class="d-block w-100" style="height: 70vh;" alt="...">
+          <div class="carousel-caption row">
+            <div class="col col-lg-4 text-start">
+              <div class="pb-2">
+                <h1 class="fw-bold" style="color: #377e2b;">The <span style="color: black">BULL'S </span>Collection 2023
+                </h1>
+                <h5 class="fs-6 fst-italic fw-bold" style="color: #377e2b;">Exclusive offer <span class="fs-5"
+                    style="color: black;text-decoration: underline;">-70%</span> off this week.</h5>
+              </div>
+              <div class="pt-2">
+                <img src="../../../assets/placeholder3.png" class="" style="max-width: 240px;" alt="...">
+              </div>
+            </div>
+            <div class="col ">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+
+    <section class="container">
+      <div class="row">
+        <div class="col p-5" *ngFor="let item of categoryList">
+          <a routerLink="/product/{{item}}" style="text-decoration: none;">
+            <div class="upper">
+              <h5 class="lower fs-6 fw-bold">{{item | titlecase}}</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section *ngFor="let item of categoryList; let i = index" [ngClass]="i % 2 === 0 ? 'even' : 'odd' " id={{item}}>
+      <div class="container">
+
+        <div class="row">
+          <h1 class="pb-5 pt-5 text-start fs-1 fw-bold" style="color: #010f1c;">{{item | titlecase}}</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-3" *ngFor="let itemList of  Itemfilter(item)">
+            <div class="card text-center p-2 hover-div"
+              style="border: none;box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);">
+              <div>
+                <a routerLink="/products/{{itemList.id}}">
+                  <img src="{{itemList.thumbnail}}" class="card-img-top text-end" alt="..."
+                    style="height: 12rem;border: none;">
+                </a>
+              </div>
+              <div class="card-body ">
+                <a routerLink="/products/{{itemList.id}}" style="text-decoration: none;">
+                  <h5 class="fs-6 fw-bold text-start" style="color: #010f1c;height: 3rem;"><small>{{itemList.title |
+                      uppercase}}</small></h5>
+                </a>
+                <h5 class="card-title fs-5 text-start" style="color: #ffb21d;">{{itemList.rating | rating}}</h5>
+                <h5 class="card-text text-start">
+                  <span class="fs-6" style="color: #55585B; text-decoration: line-through;">{{itemList.price |
+                    currency:
+                    'USD'}}</span>
+                  <span class="fs-5 px-3"
+                    style="color: #010f1c;">{{((itemList.price)-((itemList.price*itemList.discountPercentage)/100))
+                    | currency:'USD'}}</span>
+                </h5>
+              </div>
+              <div class="card-footer" style="border: none;background-color: white;">
+                <button class="btn w-100" style="background-color:#3d9cae" type="submit" (click)="addCart(itemList.id)">
+                  <h5 class="text-center m-0 fs-6" style="color: white;">Add To Cart</h5>
+                </button>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="text-center p-3">
+        <a routerLink="/product/{{item}}">
+          <button class="btn" style="background-color:#010f1c" type="submit"
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <h5 class="text-center fs-6 m-0" style="color: white; display: flex;align-items: center;">See More</h5>
+          </button>
+        </a>
+      </div>
+      <hr class="featurette-divider" style="color:white">
+
+    </section>
+
+
+  </main>
+</div>
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+<!-- 
 <main>
 
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -91,6 +253,4 @@
   </section>
 
 
-</main>
-
-<app-footer></app-footer>
+</main> -->

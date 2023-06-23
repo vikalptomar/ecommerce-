@@ -1,7 +1,29 @@
-// .center{
-//     display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-//   height: 25vh;
-// }
+.upper {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background-color: #010f1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    .lower {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.even {
+    background-color: rgb(61 156 174 / 16%);
+}
+
+.odd {
+    background-color: white;
+}
+
+.hover-div:hover button {
+    transform: scale(1.05);
+    transition: 0.5s ease;
+}

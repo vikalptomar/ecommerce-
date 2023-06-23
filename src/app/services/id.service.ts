@@ -7,8 +7,10 @@ import { BehaviorSubject } from 'rxjs';
 export class IdService {
 
   private id = new BehaviorSubject<any>("")
+  private cartValue = new BehaviorSubject<any>("")
 
-  constructor() { }
+
+  constructor() {  }
 
   setId(id:any){
     this.id.next(id)
@@ -18,4 +20,14 @@ export class IdService {
     return this.id.asObservable()
   }
 
+  setcartValue(cartValue:any){
+    this.cartValue.next(cartValue)
+  }
+  
+  getcartValue(){
+
+
+    return this.cartValue.asObservable()
+
+  }
 }

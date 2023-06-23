@@ -1,27 +1,55 @@
-<!-- <div class="login-form">
-    <h2>Login</h2>
-    <form [formGroup]="loginform" (ngSubmit)="login()">
-        <div>
-            <div class="form-group">
-                <input type="text" formControlName="email" placeholder="Email Id">
-            </div>
-            <div class="form-group">
-                <input type="password" formControlName="password" placeholder="Password">
-            </div>
-            <div class="form-actions">
-                <button type="submit">Submit</button>
-            </div>
+
+
+
+<section class="container">
+
+    <div class="d-flex justify-content-center align-items-center m-5 p-5"
+        style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);height: 85vh;">
+        <div class="card" style="width: 22rem;border:none">
             <div>
-                <p style="color: red;">{{message}}</p>
+                <div class="card-body">
+                    <h1 class="card-title fs-1 fw-bold text-center" style="color: #010f1c;">Register Now</h1>
+                </div>
+                <div class="card-body text-center ">
+                    <p class="fs-6" style="color: #7e97a0;">Existing user? <span><a style="text-decoration : none;"
+                                routerLink="/">Login</a></span></p>
+                </div>
             </div>
-            <div>
-                <p>Not a user?</p>
-                <p><a routerLink="/signup">Sign-up</a></p>
-            </div>
+            <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
+                <div class="mb-3">
+                    <label for="exampleInputUserName" class="form-label fw-bold" style="color:#010f1c;">User
+                        Name</label>
+                    <input type="text" ngModel placeholder="Enter UserName" name="userName" class="form-control"
+                        id="exampleInputUserName" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label fw-bold"
+                        style="color:#010f1c;">Password</label>
+                    <input type="password" ngModel placeholder="Enter Password" name="password" class="form-control"
+                        id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label fw-bold" style="color:#010f1c;">Email
+                        address</label>
+                    <input type="email" ngModel placeholder="Enter Email" name="email" class="form-control"
+                        id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" style="cursor: pointer;" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">I accept the terms of the Service & Privacy
+                        Policy.</label>
+                </div>
+                <div>
+                    <button class="btn w-100" style="background-color: #010f1c; color: white;" type="submit">Sign
+                        Up</button>
+                </div>
+            </form>
         </div>
-    </form>
-</div> -->
-<div class="container text-center pt-5" style="border-radius: 1rem;background-color: #efefef;height: 100vh;">
+    </div>
+</section>
+
+<!-- <div class="container text-center pt-5" style="border-radius: 1rem;background-color: #efefef;height: 100vh;">
     <div class="login-form">
         <h2>Registration</h2>
         <form #userSignUp="ngForm" (ngSubmit)="signUp(userSignUp.value)">
@@ -45,4 +73,4 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->

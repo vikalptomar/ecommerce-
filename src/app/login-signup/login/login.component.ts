@@ -11,6 +11,8 @@ import * as CryptoJS from 'crypto-js';
 })
 export class LoginComponent {
   message = "";
+  isButtonDisabled: boolean = false;
+
   loginform = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -19,6 +21,7 @@ export class LoginComponent {
   constructor(private users: AdminService, private router: Router) { }
 
   login() {
+    this.isButtonDisabled=true;
     this.users.userLogin().subscribe((res: any) => {
       let data = res.users;
       let filter = data.filter((val: any) => {
@@ -35,6 +38,7 @@ export class LoginComponent {
         }
         else {
           this.message = "Invalid email id or password";
+          this.isButtonDisabled=false;
         }
       });
     })

@@ -14,9 +14,11 @@ import { IdService } from 'src/app/services/id.service';
 export class ProductCategoryComponent {
   homeicon = faHome;
   list: any = [];
+  length:number = 0;
   cat: string = '';
   filter = '';
   carticon = faCartShopping;
+  isLoading=true; //for loading
 
   constructor(
     private products: ProductService,
@@ -44,9 +46,9 @@ export class ProductCategoryComponent {
   }
   getCategory() {
     this.products.getProducts().subscribe((res: any) => {
-      debugger
+      this.isLoading=false;
       this.list = res.products.filter((product: any) => product.category === this.cat)
-      debugger
+      this.length=this.list.length;
     })
   }
 

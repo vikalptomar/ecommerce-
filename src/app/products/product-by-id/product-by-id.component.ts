@@ -1,10 +1,12 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from 'src/app/services/cart.service';
 import { IdService } from 'src/app/services/id.service';
+import { PageNotFoundComponent } from 'src/app/common/page-not-found/page-not-found.component';
+import { CheckoutService } from 'src/app/services/checkout.service';
 
 @Component({
   selector: 'app-product-by-id',
@@ -19,63 +21,49 @@ export class ProductsByIdComponent implements OnInit {
   id?: any;
   cartItems: any = [];
   list: any = [];
-  inputValue: string="name";
-
+  inputValue: string = "name";
+  isLoading = true;  //for loading
 
 
   constructor(
     private product_instance: ProductService,
-     private route: ActivatedRoute, private routers: Router,
+    private route: ActivatedRoute, private routers: Router,
     private cartservice: CartService,
-     private location: Location,
-     private IdService : IdService
+    private location: Location,
+    private checkoutservice: CheckoutService,
+    private IdService: IdService
 
-     ) {
+  ) {
     this.id = this.route.snapshot.params['id'];
   }
-
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   debugger;
-
-  //   if (changes['inputValue']) {
-  //     const newValue = changes['inputValue'].currentValue;
-  //     const previousValue = changes['inputValue'].previousValue;
-
-  //     console.log('Input value changed:', newValue);
-  //     console.log('Previous value:', previousValue);
-
-  //     // Change the value of the current URL
-  //     const currentUrl = this.location.path();
-  //     const newUrl = currentUrl.replace(previousValue, newValue);
-  //     this.location.replaceState(newUrl);
-  //   }
-  // }
-
 
   ngOnInit(): void {
     this.getProduct(this.id)
     //loop of ngOnInit
-    this.IdService.getId().subscribe((res)=>{
-      this.getProduct(res)
+    this.IdService.getId().subscribe((res) => {
+      if (res)
+       this.getProduct(res)
     })
   }
 
-  getid(id:any){
-    this.IdService.setId(id);  
+  getid(id: any) {
+    this.IdService.setId(id);
   }
 
-  getProduct(id:any){
+  getProduct(id: any) {
     this.product_instance.getProductsById(id).subscribe((res) => {
       console.log("value", res);
+      this.isLoading=false;
       this.productData = res;
     })
   }
-
+  // ((productData.price)-((productData.price*productData.discountPercentage)/100))
   addCart(id: number) {
-
     this.cartservice.addCartData(id);
 
+  }
+  checkout() {
+    this.checkoutservice.totalproductvalue = ((this.productData.price)-((this.productData.price * this.productData.discountPercentage)/100));
   }
 }
 

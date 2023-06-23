@@ -1,25 +1,42 @@
-<div class="container text-center pt-5" style="border-radius: 1rem;background-color: #efefef;height: 100vh;">
-    <div class="login-form">
-        <h2>Login</h2>
-        <form [formGroup]="loginform" (ngSubmit)="login()">
+<section class="container">
+    <div class="d-flex justify-content-center align-items-center m-5 p-5"
+        style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);height: 85vh;">
+        <div class="card" style="width: 22rem;border:none">
             <div>
-                <div class="form-group">
-                    <input type="text" formControlName="email" placeholder="Email Id">
+                <div class="card-body">
+                    <h1 class="card-title fs-1 fw-bold text-center" style="color: #010f1c;">Login</h1>
                 </div>
-                <div class="form-group">
-                    <input type="password" formControlName="password" placeholder="Password">
-                </div>
-                <div class="form-actions">
-                    <button type="submit">Submit</button>
-                </div>
-                <div>
-                    <p style="color: red;">{{message}}</p>
-                </div>
-                <div class="p-2">
-                    <p>Not a user?</p>
-                    <p><a routerLink="/signup">Sign-up</a></p>
+                <div class="card-body text-center ">
+                    <p class="fs-6" style="color: #7e97a0;"><small>Don’t have an account? <span><a
+                                    style="text-decoration : none;" routerLink="/signup">Create a free
+                                    account</a></span></small></p>
                 </div>
             </div>
-        </form>
+            <form [formGroup]="loginform" (ngSubmit)="login()">
+                <div class="mb-3">
+                    <label for="exampleInputUserName" class="form-label fw-bold" style="color:#010f1c;">Email
+                        Id</label>
+                    <input type="text" formControlName="email" placeholder="Email Id" class="form-control"
+                        id="exampleInputUserName" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label fw-bold"
+                        style="color:#010f1c;">Password</label>
+                    <input type="password" formControlName="password" placeholder="Password" class="form-control"
+                        id="exampleInputPassword1">
+                </div>
+                <div class="px-3">
+                    <p style="color: red;"><small>{{message}}</small></p>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input"    style="cursor: pointer;" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+                <div>
+                    <button [disabled]="isButtonDisabled" class="btn w-100"
+                        style="background-color: #010f1c; color: white;" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+</section>

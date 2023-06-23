@@ -35,12 +35,66 @@
     </div>
 </nav> -->
 
-  
-<app-header></app-header>
+<div *ngIf="isLoading">
+    <app-loader></app-loader>
+</div>
 
 
+<div *ngIf="isLoading===false">
 
-<section class="container-fluid px-4 py-5">
+    
+
+    <section class="container px-4 py-5">
+        <h1 class="mx-3 text-start fw-bold pb-4 pt-5" style="color: #010f1c;font-size: 50px;">{{cat | titlecase}}
+        </h1>
+        <div class="breadcrumb pt-3 mx-4">
+            <span class="breadcrumb-item"><a href="/" style="text-decoration:none;color: #A8ACB0;">Home</a></span>
+            <span class="breadcrumb-item" style="color: #A8ACB0;">{{cat | titlecase}}</span>
+          </div>
+        <div class="card-group pt-1" style="border-radius: 1rem;border:none; background-color:white;">
+            <div *ngFor="let item of list">
+                <div class="mx-1 px-2" style="background-color: white;">
+                    <div class="card mx-1 hover-div" style="width: 16rem; height: 20rem;border: none;">
+                        <div style="box-shadow: 0px 30px 70px rgba(1, 15, 28, 0.1);">
+                            <div class="card-header align-middle" style="border: none;background-color: white;">
+                                <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
+                                    <img src="{{item.thumbnail}}" class="card-img-top "
+                                        style="height: 8rem;border: none;" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
+                                    <h5 class="card-title fs-6 text-truncate" style="color: #55585B;max-width: 150px;">
+                                        {{item.title | uppercase}}
+                                    </h5>
+                                </a>
+                                <h5 class="card-title fs-5" style="color: #ffb21d;">{{item.rating | rating}}
+                                </h5>
+                                <h5 class="card-text text-start">
+                                    <span class="fs-6"
+                                        style="color: #55585B; text-decoration: line-through;">{{item.price |
+                                        currency:
+                                        'USD'}}</span>
+                                    <span class="fs-5 px-3"
+                                        style="color: #010f1c;">{{((item.price)-((item.price*item.discountPercentage)/100))
+                                        | currency:'USD'}}</span>
+                                </h5>
+                                <div style="border: none;background-color: white;">
+                                    <button class="btn w-100" style="background-color:#010f1c;" type="submit"
+                                        (click)="addCart(item.id)">
+                                        <h5 class="text-center fs-6 m-0" style="color: white;">Add To Cart</h5>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- <section class="container-fluid px-4 py-5">
     <h1 class="mx-3 text-center">{{cat | uppercase}}</h1>
     <hr class="featurette-divider">
     <div class="card-group p-2" style="border-radius: 1rem; background-color:#efefef;">
@@ -48,8 +102,7 @@
             <div class="m-3 p-1 " style="background-color: #efefef;;border-radius: 1rem;">
                 <a routerLink="/products/{{item.id}}" style=" text-decoration:none;">
                     <div class="card p-2 bd-light border mx-3 mt-1" style="width: 16rem; height: 22rem;">
-                        <img src="{{item.thumbnail}}" class="card-img-top" style="max-height: 14rem;" alt="..."
-                            >
+                        <img src="{{item.thumbnail}}" class="card-img-top" style="max-height: 14rem;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{item.title | uppercase}}
                             </h5>
@@ -57,10 +110,10 @@
                     </div>
                 </a>
                 <div class="text-center p-3">
-                    <button class="btn btn-outline-success" style="border-radius: 3rem;" (click)="addCart(item.id)">+ Cart</button>
+                    <button class="btn btn-outline-success" style="border-radius: 3rem;" (click)="addCart(item.id)">+
+                        Cart</button>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<app-footer></app-footer>
+</section> -->
