@@ -13,6 +13,8 @@ export class CartService {
   }
 
   arr: any[] = [];
+  arr2: any[] = [];
+
   message = 0;
   totalproduct: number = 0;
 
@@ -29,7 +31,7 @@ export class CartService {
 
   addCartData(id: number) {
     new Promise((resolve, reject) => {
-      const existingData = localStorage.getItem('cartItems');
+      let existingData = localStorage.getItem('cartItems');
       if (existingData) {
         this.arr = JSON.parse(existingData)
         this.products.getProductsById(id).subscribe((res) => {
@@ -53,6 +55,14 @@ export class CartService {
             resolve(false)
             this.toastr.warning('Go to Cart', 'Item already added');
           }
+        })
+      }
+      else{
+        this.products.getProductsById(id).subscribe((res) => {
+            this.arr.push(res);
+            let item: any=localStorage.setItem('cartItems', JSON.stringify(this.arr));
+            this.arr = JSON.parse(item)
+            this.toastr.success('Success', 'Item added Successfully');
         })
       }
     });
