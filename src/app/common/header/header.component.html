@@ -209,7 +209,8 @@
         </div>
         <div class="col-7">
           <h6 class="fw-bold">{{item.title | titlecase}}</h6>
-          <h6 class="fw-bold" style="color: green;"><small>{{ ((item.price)-(((item.discountPercentage)*(item.price))/100)) | currency: 'USD' }}</small></h6>
+          <h6 class="fw-bold" style="color: green;"><small>{{
+              ((item.price)-(((item.discountPercentage)*(item.price))/100)) | currency: 'USD' }}</small></h6>
         </div>
         <div class="col-1 text-start">
           <button class="btn-close" style="border: none;" (click)="remove(item.id)"
@@ -219,16 +220,17 @@
       </div>
     </div>
   </div>
-  <div class="offcanvas-footer m-2 p-2" >
+  <div class="offcanvas-footer m-2 p-2">
     <div class="d-flex row container  m-1 p-1">
       <h6 class="col fw-bold" style="color: #010f1c;">Subtotal:</h6>
       <h6 class="col fw-bold" style="color: green">{{totDiscPrice| currency}}</h6>
     </div>
-    <div class="d-flex row container" >
+    <div class="d-flex row container">
       <a routerLink="/cart" class="col">
         <div class="text-center">
           <button class="btn w-100" style="background-color: #3d9cae;" type="submit"
-            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+            data-bs-dismiss="offcanvas">
             <h5 class="text-center fs-6 m-0" style="color: white;">View Cart</h5>
           </button>
         </div>
@@ -236,7 +238,8 @@
       <a routerLink="/checkout" class="col">
         <div class="text-center">
           <button class="btn w-100" style="background-color: #010f1c;" type="submit"
-            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+            data-bs-dismiss="offcanvas">
             <h5 class="text-center fs-6 m-0" style="color: white;">Checkout</h5>
           </button>
         </div>

@@ -31,12 +31,11 @@ export class IdService {
   }
 
   setcartDetails(cartValue:any[]){
-    debugger;
     this.cartDetails.next(cartValue)
   }
   
   getcartDetails(){
-    debugger;
     return this.cartDetails.asObservable()
   }
+  
 }
