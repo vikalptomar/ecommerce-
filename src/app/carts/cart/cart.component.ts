@@ -30,7 +30,6 @@ export class CartComponent {
   isScrolledDown: boolean = false;// for button to scroll
   itemId: number = 0;
 
-
   couponForm = new FormGroup({
     promo: new FormControl('')
   })
@@ -46,7 +45,6 @@ export class CartComponent {
       this.productQuantity[i] = 1
     }
   }
-
 
   @HostListener('window:scroll')
   onWindowScroll() {
@@ -120,10 +118,7 @@ export class CartComponent {
   }
 
   checkCoupon() {
-    debugger;
-
     if (this.countForPromo == 0) {
-
       if (this.couponForm.value.promo == "#megaBull's") {
         this.totDiscPrice = (this.totDiscPrice - (((this.totDiscPrice) * 70) / 100)).toFixed(2)
         this.applied = "Congratulations! 70% Off";
@@ -131,17 +126,14 @@ export class CartComponent {
       }
       else {
         console.log("wrong code");
-
       }
       console.log(this.totDiscPrice);
-
     }
   }
 
   checkout() {
     this.checkoutservice.totalproductvalue = this.totDiscPrice;
     console.log(this.totDiscPrice);
-
   }
 
 }

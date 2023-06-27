@@ -26,6 +26,7 @@ export class CartService {
     let items: any = localStorage.getItem('cartItems');
     this.arr = JSON.parse(items)
     this.IdService.setcartValue(this.arr.length);
+    this.IdService.setcartDetails(this.arr);
     return this.arr
   }
 
@@ -74,7 +75,7 @@ export class CartService {
     let removeItem = existingData.filter((item:any) => item.id !== id);
     localStorage.setItem('cartItems', JSON.stringify(removeItem))
     this.getCartData()
-      debugger; 
+
 
       // for (i = 0; i < this.arr.length; i++) {
       //   if (this.arr[i].id == id) {

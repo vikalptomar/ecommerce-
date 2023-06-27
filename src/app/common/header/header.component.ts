@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   homeicon = faHome;
   carticon = faCartShopping;
   list: any = [];
+  totPrice=0;
+  totDiscPrice=0;
   // filteredList for Model keyup
   filteredList: any[] = [];
   cartItems: any[] = [];
@@ -37,21 +39,23 @@ export class HeaderComponent implements OnInit {
       // console.log(this.list);
     })
 
-
     this.handleSearch()
-    
+
     this.getCartItems();
     this.totalproduct = this.cartItems.length;
-    
+
     // this.IdService.setcartValue(this.totalproduct);
 
-      
-      this.IdService.getcartValue().subscribe((res) => {
-        this.totalproduct = res;
-      })
-      
-
-    
+    this.IdService.getcartValue().subscribe((res) => {
+      this.totalproduct = res;
+    })
+    this.IdService.getcartDetails().subscribe((res) => {
+      this.cartItems = res;
+    })
+    this.cartItems.filter((val) => {
+      this.totPrice += val.price;
+      this.totDiscPrice += ((val.price) - (((val.discountPercentage) * (val.price)) / 100))
+    })
   }
 
   inputSearch(event: any) {
@@ -84,4 +88,8 @@ export class HeaderComponent implements OnInit {
     this.IdService.setId(product)
   }
 
+  remove(id:number){
+    this.cartService.removeCartData(id);
+    this.getCartItems();
+  }
 }

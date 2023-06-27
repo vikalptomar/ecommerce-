@@ -6,8 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class IdService {
 
-  private id = new BehaviorSubject<any>("")
-  private cartValue = new BehaviorSubject<any>("")
+  private id = new BehaviorSubject<any>("");
+  private cartValue = new BehaviorSubject<any>("");
+  private cartDetails = new BehaviorSubject<any[]>([]);
+
 
 
   constructor() {  }
@@ -25,9 +27,16 @@ export class IdService {
   }
   
   getcartValue(){
-
-
     return this.cartValue.asObservable()
+  }
 
+  setcartDetails(cartValue:any[]){
+    debugger;
+    this.cartDetails.next(cartValue)
+  }
+  
+  getcartDetails(){
+    debugger;
+    return this.cartDetails.asObservable()
   }
 }
