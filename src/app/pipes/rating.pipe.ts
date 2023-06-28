@@ -11,5 +11,5 @@ export class RatingPipe implements PipeTransform {
     let emptyStar='☆'.repeat(5-round);
     return filedStar+emptyStar;
   }
-
+ 
 }

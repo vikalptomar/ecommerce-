@@ -27,3 +27,30 @@
     transform: scale(1.05);
     transition: 0.5s ease;
 }
+
+
+    .left-right {
+        animation-name: example;
+        animation-duration: 0.8s;
+    }
+    .right-left {
+        animation-name: example2;
+        animation-duration: 0.8s;
+    }
+
+@keyframes example {
+    0% {
+        left: 19%;
+    }
+    100% {
+        left: 15%;
+    }
+}
+@keyframes example2 {
+    0% {
+        right: 19%;
+    }
+    100% {
+        right: 15%;
+    }
+}

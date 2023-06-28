@@ -20,7 +20,7 @@
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="2500">
           <img src="../../../assets/back1.jpg" class="d-block w-100" style="height: 70vh;" alt="...">
-          <div class="carousel-caption row">
+          <div class="left-right carousel-caption row">
             <div class="col col-lg-4 text-start">
               <div class="pb-2">
                 <h1 class="fw-bold" style="color: white;">The <span style="color: #e4062b">BULL'S </span>Collection 2023
@@ -38,7 +38,7 @@
         </div>
         <div class="carousel-item" data-bs-interval="2500">
           <img src="../../../assets/back2.jpg" class="d-block w-100" style="height: 70vh;" alt="...">
-          <div class="carousel-caption row">
+          <div class="right-left carousel-caption row">
             <div class="col ">
             </div>
             <div class="col col-lg-4 text-start">
@@ -57,7 +57,7 @@
         </div>
         <div class="carousel-item" data-bs-interval="2500">
           <img src="../../../assets/back3.jpg" class="d-block w-100" style="height: 70vh;" alt="...">
-          <div class="carousel-caption row">
+          <div class="left-right carousel-caption row">
             <div class="col col-lg-4 text-start">
               <div class="pb-2">
                 <h1 class="fw-bold" style="color: #377e2b;">The <span style="color: black">BULL'S </span>Collection 2023
@@ -89,10 +89,12 @@
 
     <section class="container">
       <div class="row">
-        <div class="col p-5" *ngFor="let item of categoryList">
+        <div class="col text-end p-5" *ngFor="let item of categoryList">
           <a routerLink="/product/{{item}}" style="text-decoration: none;">
-            <div class="upper">
-              <h5 class="lower fs-6 fw-bold">{{item | titlecase}}</h5>
+            <div class="">
+              <div class="upper">
+                <h5 class="lower fs-6 fw-bold">{{item | titlecase}}</h5>
+              </div>
             </div>
           </a>
         </div>
