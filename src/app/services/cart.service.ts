@@ -24,13 +24,18 @@ export class CartService {
 
   getCartData() {
     let items: any = localStorage.getItem('cartItems');
-    this.arr = JSON.parse(items)
+    debugger;
+    let items1 = JSON.parse(items)
+    if (items1) this.arr = items1
+
     this.IdService.setcartValue(this.arr.length);
     this.IdService.setcartDetails(this.arr);
+    debugger;
     return this.arr
   }
 
   addCartData(id: number) {
+    debugger;
     new Promise((resolve, reject) => {
       let existingData = localStorage.getItem('cartItems');
       if (existingData) {
@@ -44,7 +49,7 @@ export class CartService {
             }
           }
           // a == 0 ? this.arr.push(res) : console.log("duplicate");
-          if (a == 0) { 
+          if (a == 0) {
             this.arr.push(res);
             localStorage.setItem('cartItems', JSON.stringify(this.arr));
             resolve(true)
@@ -58,12 +63,18 @@ export class CartService {
           }
         })
       }
-      else{
+      else {
         this.products.getProductsById(id).subscribe((res) => {
-            this.arr.push(res);
-            let item: any=localStorage.setItem('cartItems', JSON.stringify(this.arr));
-            this.arr = JSON.parse(item)
-            this.toastr.success('Success', 'Item added Successfully');
+          debugger;
+          this.arr.push(res);
+          localStorage.setItem('cartItems', JSON.stringify(this.arr));
+
+          //this.arr = JSON.parse(item)
+          debugger;
+
+          this.getCartData()
+
+          this.toastr.success('Success', 'Item added Successfully');
         })
       }
     });
@@ -71,25 +82,26 @@ export class CartService {
 
   removeCartData(id: number) {
     let i, a = 0;
-    let existingData:any =this.getCartData();
-    let removeItem = existingData.filter((item:any) => item.id !== id);
+    let existingData: any = this.getCartData();
+    let removeItem = existingData.filter((item: any) => item.id !== id);
     localStorage.setItem('cartItems', JSON.stringify(removeItem))
+    debugger;
     this.getCartData()
 
 
-      // for (i = 0; i < this.arr.length; i++) {
-      //   if (this.arr[i].id == id) {
-      //     a = i;
-      //     break;
-      //   }
-      // }
+    // for (i = 0; i < this.arr.length; i++) {
+    //   if (this.arr[i].id == id) {
+    //     a = i;
+    //     break;
+    //   }
+    // }
 
-      // console.log("log=", id);
-      // console.log("array length", this.arr.length);
-      // this.arr.splice(a, 1);
-    
-   
-      //this.IdService.setcartValue(this.arr.length);
-    
+    // console.log("log=", id);
+    // console.log("array length", this.arr.length);
+    // this.arr.splice(a, 1);
+
+
+    //this.IdService.setcartValue(this.arr.length);
+
   }
 }

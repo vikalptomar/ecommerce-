@@ -10,8 +10,6 @@ export class IdService {
   private cartValue = new BehaviorSubject<any>("");
   private cartDetails = new BehaviorSubject<any[]>([]);
 
-
-
   constructor() {  }
 
   setId(id:any){

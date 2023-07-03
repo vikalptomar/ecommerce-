@@ -85,16 +85,12 @@
       </button>
     </div>
 
-
-
     <section class="container">
       <div class="row">
         <div class="col text-end p-5" *ngFor="let item of categoryList">
-          <a routerLink="/product/{{item}}" style="text-decoration: none;">
-            <div class="">
-              <div class="upper">
-                <h5 class="lower fs-6 fw-bold">{{item | titlecase}}</h5>
-              </div>
+          <a routerLink="/product/{{item}}" style="text-decoration: none;display: flex; justify-content: center;">
+            <div class="upper">
+              <h5 class="lower fs-6 fw-bold">{{item | titlecase}}</h5>
             </div>
           </a>
         </div>

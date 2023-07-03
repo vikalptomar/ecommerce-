@@ -80,8 +80,8 @@ export class AllProductComponent {
 
   addCart(id: any) {
     console.log("cart clicked = ", id);
-    let cartData = this.cartService.getCartData();
-    console.log(cartData);
+    // let cartData = this.cartService.getCartData();
+    // console.log(cartData);
     this.cartService.addCartData(id);
     // this.cartService.addCartData(id).filter((res)=>{
     //   res

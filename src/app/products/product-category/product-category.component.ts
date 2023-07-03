@@ -5,7 +5,6 @@ import { faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from 'src/app/services/cart.service';
 import { IdService } from 'src/app/services/id.service';
 // import { FormControl, FormGroup } from '@angular/forms';
-
 @Component({
   selector: 'app-product-category',
   templateUrl: './product-category.component.html',
@@ -14,12 +13,11 @@ import { IdService } from 'src/app/services/id.service';
 export class ProductCategoryComponent {
   homeicon = faHome;
   list: any = [];
-  length:number = 0;
+  length: number = 0;
   cat: string = '';
   filter = '';
   carticon = faCartShopping;
-  isLoading=true; //for loading
-
+  isLoading = true; //for loading
   constructor(
     private products: ProductService,
     private route: ActivatedRoute,
@@ -29,7 +27,6 @@ export class ProductCategoryComponent {
   ) {
 
   }
-
   ngOnInit(): void {
     this.cat = this.route.snapshot.params['category'];
 
@@ -45,17 +42,20 @@ export class ProductCategoryComponent {
 
   }
   getCategory() {
-    this.products.getProducts().subscribe((res: any) => {
-      this.isLoading=false;
-      this.list = res.products.filter((product: any) => product.category === this.cat)
-      this.length=this.list.length;
-    })
+    if (typeof this.cat === "string") {
+      this.products.getProducts().subscribe((res: any) => {
+        this.isLoading = false;
+        this.list = res.products.filter((product: any) => product.category === this.cat)
+        this.length = this.list.length;
+        if (this.length == 0) {
+          this.router.navigate(['404']);
+        }
+      })
+    }
   }
-
   addCart(id: number) {
     this.cartService.addCartData(id);
   }
-
   // searchForm=new FormGroup({
   //   title: new FormControl('')
   // })

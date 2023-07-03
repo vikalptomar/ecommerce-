@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from 'src/app/services/cart.service';
 import { IdService } from 'src/app/services/id.service';
-import { PageNotFoundComponent } from 'src/app/common/page-not-found/page-not-found.component';
 import { CheckoutService } from 'src/app/services/checkout.service';
 
 @Component({
@@ -24,10 +23,9 @@ export class ProductsByIdComponent implements OnInit {
   inputValue: string = "name";
   isLoading = true;  //for loading
 
-
   constructor(
     private product_instance: ProductService,
-    private route: ActivatedRoute, private routers: Router,
+    private route: ActivatedRoute, private router: Router,
     private cartservice: CartService,
     private location: Location,
     private checkoutservice: CheckoutService,
@@ -42,7 +40,7 @@ export class ProductsByIdComponent implements OnInit {
     //loop of ngOnInit
     this.IdService.getId().subscribe((res) => {
       if (res)
-       this.getProduct(res)
+        this.getProduct(res)
     })
   }
 
@@ -50,20 +48,31 @@ export class ProductsByIdComponent implements OnInit {
     this.IdService.setId(id);
   }
 
-  getProduct(id: any) {
-    this.product_instance.getProductsById(id).subscribe((res) => {
-      console.log("value", res);
-      this.isLoading=false;
-      this.productData = res;
-    })
+  getProduct(productId: any) {
+    let id = Number(productId)
+    if (id) {
+      this.product_instance.getProductsById(id).subscribe(
+        res => {
+          console.log("value", res);
+          this.isLoading = false;
+          this.productData = res;
+        },
+        error => {
+          console.log("error", error);
+          this.isLoading = false;
+          if (error.status === 404) {
+            this.router.navigate(['4044']);
+          }
+        }
+      );
+    }
   }
-  // ((productData.price)-((productData.price*productData.discountPercentage)/100))
+
   addCart(id: number) {
     this.cartservice.addCartData(id);
-
   }
   checkout() {
-    this.checkoutservice.totalproductvalue = ((this.productData.price)-((this.productData.price * this.productData.discountPercentage)/100));
+    this.checkoutservice.totalproductvalue = ((this.productData.price) - ((this.productData.price * this.productData.discountPercentage) / 100));
   }
 }
 

@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:"cart",component:CartComponent, canActivate:[AuthGuard]},
   {path:"checkout",component:CheckoutComponent, canActivate:[AuthGuard]},
   {path:"product/:category",component:ProductCategoryComponent, canActivate:[AuthGuard]},
-  {path:"**",component:PageNotFoundComponent}
+  {path:"**", pathMatch: 'full',  component:PageNotFoundComponent}
 ];
 
 @NgModule({
